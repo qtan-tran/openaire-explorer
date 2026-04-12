@@ -18,7 +18,22 @@
       "Bash(npm run:*)",
       "Bash(node --import tsx/esm packages/server/src/index.ts)",
       "Bash(curl -s http://localhost:3001/api/health)",
-      "Bash(npx tsx:*)"
+      "Bash(npx tsx:*)",
+      "Bash(ls /c/Users/qtran1/Documents/Coding/openaire-explorer/packages/client/tailwind.config*)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('scripts'\\), indent=2\\)\\)\")",
+      "Bash(timeout 8 npx vite --port 5173)",
+      "Bash(timeout 10 npx vite --port 5175)",
+      "Bash(node -e \"const vite = require\\('./node_modules/vite/dist/node/index.js'\\); console.log\\('vite ok'\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('vite', d['version']\\)\")",
+      "Bash(curl -s https://vite.dev/guide/migration)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('version:', d['version']\\); print\\('main:', d.get\\('main','N/A'\\)\\); print\\('exports keys:', list\\(d.get\\('exports',{}\\).keys\\(\\)\\)[:5]\\)\")",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(pkill -9 -f \"node\")",
+      "Bash(netstat -ano)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"server exit: $?\")",
+      "Bash(echo \"shared exit: $?\")",
+      "Bash(npm ls:*)"
     ]
   }
 }
