@@ -9,7 +9,16 @@
       "Bash(curl -s -D /tmp/ds_headers.txt \"https://api.openaire.eu/graph/v1/dataSources?search=zenodo&pageSize=2\" -o /tmp/datasources.json)",
       "Bash(curl -s \"https://api.openaire.eu/graph/v2/researchProducts?search=climate&pageSize=2&cursor=*\")",
       "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({'header': d.get\\('header'\\), 'nextCursor_present': 'nextCursor' in d.get\\('header', {}\\)}, indent=2\\)\\)\")",
-      "Bash(python3 -m json.tool)"
+      "Bash(python3 -m json.tool)",
+      "Bash(npm --version)",
+      "Bash(npm install:*)",
+      "Read(//c/Users/qtran1/AppData/Local/Temp/claude/C--Users-qtran1-Documents-Coding-openaire-explorer/24ed83a8-3627-42f3-b251-89f3c5292487/tasks/**)",
+      "Bash(kill %1)",
+      "Bash(npm audit:*)",
+      "Bash(npm run:*)",
+      "Bash(node --import tsx/esm packages/server/src/index.ts)",
+      "Bash(curl -s http://localhost:3001/api/health)",
+      "Bash(npx tsx:*)"
     ]
   }
 }

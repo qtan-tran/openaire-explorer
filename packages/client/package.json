@@ -1,0 +1,11 @@
+{
+  "name": "@openaire-explorer/client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'client not yet scaffolded'",
+    "build": "echo 'client not yet scaffolded'",
+    "typecheck": "echo 'client not yet scaffolded'",
+    "lint": "echo 'client not yet scaffolded'"
+  }
+}

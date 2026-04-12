@@ -1,0 +1,21 @@
+{
+  "name": "openaire-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/client",
+    "packages/server",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=packages/server & npm run dev --workspace=packages/client",
+    "build": "npm run build --workspace=packages/shared && npm run build --workspace=packages/server && npm run build --workspace=packages/client",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
