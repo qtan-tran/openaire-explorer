@@ -1,0 +1,408 @@
+{
+    "header": {
+        "numFound": 1825741,
+        "maxScore": 4.881696,
+        "queryTime": 112,
+        "page": 1,
+        "pageSize": 2
+    },
+    "results": [
+        {
+            "authors": [
+                {
+                    "fullName": "Gonca Kurt",
+                    "name": "Gonca",
+                    "surname": "Kurt",
+                    "rank": 1,
+                    "pid": {
+                        "id": {
+                            "scheme": "orcid",
+                            "value": "0000-0003-4158-4594"
+                        },
+                        "provenance": null
+                    }
+                },
+                {
+                    "fullName": "Recep Akdur",
+                    "name": "Recep",
+                    "surname": "Akdur",
+                    "rank": 2,
+                    "pid": {
+                        "id": {
+                            "scheme": "orcid",
+                            "value": "0000-0002-9766-1117"
+                        },
+                        "provenance": null
+                    }
+                }
+            ],
+            "openAccessColor": "gold",
+            "publiclyFunded": false,
+            "type": "publication",
+            "language": {
+                "code": "eng",
+                "label": "English"
+            },
+            "countries": null,
+            "subjects": [
+                {
+                    "subject": {
+                        "scheme": "SDG",
+                        "value": "13. Climate action"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "FOS",
+                        "value": "01 natural sciences"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "SDG",
+                        "value": "3. Good health"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "FOS",
+                        "value": "0105 earth and related environmental sciences"
+                    },
+                    "provenance": null
+                }
+            ],
+            "mainTitle": "Under What Conditions Does Climate Change Worry Contribute to Climate Action in Turkey: What Moderates This Relationship?",
+            "subTitle": null,
+            "descriptions": [
+                "<jats:p>Recent studies provide strong evidence that climate change worry leads to climate action. However, there is a need for more studies on the conditions under which climate change worry triggers climate action or causes mental disorders. In this regard, we investigated the relationship between climate change worry and climate action and evaluated the role of participants\u00e2\u20ac\u2122 knowledge of climate change and natural disaster experience in this relationship. The moderating function of climate action in the relationship between climate change worry and climate-related mental disorders was evaluated. Furthermore, the impact of climate change worry on different climate actions was also researched. Data obtained through an online survey from individuals aged 18\u00e2\u20ac\u201c65 years old in a nationally representative sample in Turkey were used (n = 1229). The results show a positive impact of climate change worry on climate action. If climate change information creates a climate change worry, climate action occurs. Whereas climate change knowledge has a moderating role in the impact of climate change worry on climate action, experiencing climate-related natural disasters does not have such a role. However, experiencing climate-related natural disasters combined with climate change knowledge in the context of group impact leads to climate action. The climate change worry score had a positive effect on experiencing a climate-related mental disorder, but climate action does not have a moderating role in this relationship. The climate action most correlated with climate change worry is participating in voluntary activities to raise awareness among individuals. The contribution of climate change worry in different conditions to climate action is clearly supported by these research results. Therefore, climate change communication should be used to support the aspect of climate change worry that is transformed into climate action, and viable and sustainable environments should be created by considering each result of this study.</jats:p>"
+            ],
+            "publicationDate": "2024-03-08",
+            "publisher": "MDPI AG",
+            "embargoEndDate": null,
+            "sources": [
+                "Crossref"
+            ],
+            "formats": null,
+            "contributors": null,
+            "coverages": null,
+            "bestAccessRight": {
+                "code": "c_abf2",
+                "label": "OPEN",
+                "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/"
+            },
+            "container": {
+                "name": "Sustainability",
+                "issnPrinted": null,
+                "issnOnline": "2071-1050",
+                "issnLinking": null,
+                "ep": null,
+                "iss": null,
+                "sp": "2269",
+                "vol": "16",
+                "edition": null,
+                "conferencePlace": null,
+                "conferenceDate": null
+            },
+            "documentationUrls": null,
+            "codeRepositoryUrl": null,
+            "programmingLanguage": null,
+            "contactPeople": null,
+            "contactGroups": null,
+            "tools": null,
+            "size": null,
+            "version": null,
+            "geoLocations": null,
+            "id": "doi_________::883ad5ab828c831032e60a5747c3cca7",
+            "originalIds": [
+                "su16062269",
+                "10.3390/su16062269",
+                "50|doiboost____|883ad5ab828c831032e60a5747c3cca7"
+            ],
+            "pids": [
+                {
+                    "scheme": "doi",
+                    "value": "10.3390/su16062269"
+                }
+            ],
+            "dateOfCollection": null,
+            "lastUpdateTimeStamp": null,
+            "indicators": {
+                "citationImpact": {
+                    "citationCount": 5.0,
+                    "influence": 2.8300673e-09,
+                    "popularity": 5.984186e-09,
+                    "impulse": 5.0,
+                    "citationClass": "C5",
+                    "influenceClass": "C5",
+                    "impulseClass": "C4",
+                    "popularityClass": "C4"
+                }
+            },
+            "projects": null,
+            "organizations": [
+                {
+                    "legalName": "Gaziosmanpa\u00c5\u0178a University",
+                    "acronym": "Gaziosmanpa\u00c5\u0178a University",
+                    "id": "openorgs____::682e5ceb0009d37014950f095519be02",
+                    "pids": [
+                        {
+                            "scheme": "ISNI",
+                            "value": "000000010689906X"
+                        },
+                        {
+                            "scheme": "wikidata",
+                            "value": "Q5529157"
+                        },
+                        {
+                            "scheme": "GRID",
+                            "value": "grid.411550.4"
+                        },
+                        {
+                            "scheme": "ROR",
+                            "value": "https://ror.org/01rpe9k96"
+                        },
+                        {
+                            "scheme": "OrgReg",
+                            "value": "TR0046"
+                        },
+                        {
+                            "scheme": "mag_id",
+                            "value": "238144855"
+                        },
+                        {
+                            "scheme": "Wikidata",
+                            "value": "Q5529157"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100004850"
+                        },
+                        {
+                            "scheme": "PIC",
+                            "value": "949649013"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "7016614"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100004850"
+                        }
+                    ]
+                },
+                {
+                    "legalName": "Ankara University",
+                    "acronym": "Ankara University",
+                    "id": "openorgs____::939896673d040d00fa3beaeceaa0c596",
+                    "pids": [
+                        {
+                            "scheme": "mag_id",
+                            "value": "149218525"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "1935462"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "100007613"
+                        },
+                        {
+                            "scheme": "wikidata",
+                            "value": "Q1060621"
+                        },
+                        {
+                            "scheme": "ISNI",
+                            "value": "0000000109409118"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "100007614"
+                        },
+                        {
+                            "scheme": "ROR",
+                            "value": "https://ror.org/01wntqw50"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "100007613"
+                        },
+                        {
+                            "scheme": "Wikidata",
+                            "value": "Q1060621"
+                        },
+                        {
+                            "scheme": "OrgReg",
+                            "value": "TR0013"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "100007614"
+                        },
+                        {
+                            "scheme": "GRID",
+                            "value": "grid.7256.6"
+                        },
+                        {
+                            "scheme": "PIC",
+                            "value": "999867659"
+                        }
+                    ]
+                }
+            ],
+            "communities": [
+                {
+                    "code": "knowmad",
+                    "label": "Knowmad Institut",
+                    "provenance": null
+                }
+            ],
+            "collectedFrom": [
+                {
+                    "key": "openaire____::081b82f96300b6a6e3d282bad31cb6e2",
+                    "value": "Crossref"
+                }
+            ],
+            "instances": [
+                {
+                    "pids": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.3390/su16062269"
+                        }
+                    ],
+                    "license": "CC BY",
+                    "accessRight": {
+                        "code": "c_abf2",
+                        "label": "OPEN",
+                        "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/",
+                        "openAccessRoute": "gold"
+                    },
+                    "type": "Article",
+                    "urls": [
+                        "https://doi.org/10.3390/su16062269"
+                    ],
+                    "publicationDate": "2024-03-08",
+                    "refereed": "peerReviewed",
+                    "hostedBy": {
+                        "key": "doajarticles::d5c4679e64974dc24c29d1a19841ba88",
+                        "value": "Sustainability"
+                    },
+                    "collectedFrom": {
+                        "key": "openaire____::081b82f96300b6a6e3d282bad31cb6e2",
+                        "value": "Crossref"
+                    }
+                }
+            ],
+            "isGreen": false,
+            "isInDiamondJournal": false
+        },
+        {
+            "authors": [
+                {
+                    "fullName": "MeteoSwiss & ETH Zurich",
+                    "name": null,
+                    "surname": null,
+                    "rank": 1,
+                    "pid": null
+                }
+            ],
+            "openAccessColor": null,
+            "publiclyFunded": false,
+            "type": "publication",
+            "language": {
+                "code": "eng",
+                "label": "English"
+            },
+            "countries": null,
+            "subjects": null,
+            "mainTitle": "Climate CH2025 \u00e2\u20ac\u201c Switzerland\u00e2\u20ac\u2122s Future Climate",
+            "subTitle": null,
+            "descriptions": [
+                "Climate scenarios form a central basis for informed decisions on adaptation and climate mitigation. These fundamentals were developed in the Climate CH2025 project. The brochure \"Climate CH2025 \u00e2\u20ac\u201c Switzerland's future climate\" summarises the key messages of Climate CH2025.  "
+            ],
+            "publicationDate": "2025-01-01",
+            "publisher": null,
+            "embargoEndDate": null,
+            "sources": null,
+            "formats": null,
+            "contributors": null,
+            "coverages": null,
+            "bestAccessRight": null,
+            "container": null,
+            "documentationUrls": null,
+            "codeRepositoryUrl": null,
+            "programmingLanguage": null,
+            "contactPeople": null,
+            "contactGroups": null,
+            "tools": null,
+            "size": null,
+            "version": null,
+            "geoLocations": null,
+            "id": "doi_________::b459128ec6a39036b85233a9d2468398",
+            "originalIds": [
+                "50|datacite____::b459128ec6a39036b85233a9d2468398",
+                "10.18751/climate/scenarios/ch2025/brochure/1.0/en"
+            ],
+            "pids": [
+                {
+                    "scheme": "doi",
+                    "value": "10.18751/climate/scenarios/ch2025/brochure/1.0/en"
+                }
+            ],
+            "dateOfCollection": null,
+            "lastUpdateTimeStamp": null,
+            "indicators": {
+                "citationImpact": {
+                    "citationCount": 0.0,
+                    "influence": 2.3811355e-09,
+                    "popularity": 2.5970819e-09,
+                    "impulse": 0.0,
+                    "citationClass": "C5",
+                    "influenceClass": "C5",
+                    "impulseClass": "C5",
+                    "popularityClass": "C5"
+                }
+            },
+            "projects": null,
+            "organizations": null,
+            "communities": null,
+            "collectedFrom": [
+                {
+                    "key": "openaire____::9e3be59865b2c1c335d32dae2fe7b254",
+                    "value": "Datacite"
+                }
+            ],
+            "instances": [
+                {
+                    "pids": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.18751/climate/scenarios/ch2025/brochure/1.0/en"
+                        }
+                    ],
+                    "type": "Other literature type",
+                    "urls": [
+                        "https://dx.doi.org/10.18751/climate/scenarios/ch2025/brochure/1.0/en"
+                    ],
+                    "publicationDate": "2025-01-01",
+                    "refereed": "nonPeerReviewed",
+                    "hostedBy": {
+                        "key": "openaire____::55045bd2a65019fd8e6741a755395c8c",
+                        "value": "Unknown Repository"
+                    },
+                    "collectedFrom": {
+                        "key": "openaire____::9e3be59865b2c1c335d32dae2fe7b254",
+                        "value": "Datacite"
+                    }
+                }
+            ],
+            "isGreen": false,
+            "isInDiamondJournal": false
+        }
+    ]
+}

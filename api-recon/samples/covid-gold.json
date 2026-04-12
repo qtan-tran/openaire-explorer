@@ -1,0 +1,769 @@
+{
+    "header": {
+        "numFound": 575903,
+        "maxScore": 4.9104757,
+        "queryTime": 172,
+        "page": 1,
+        "pageSize": 2
+    },
+    "results": [
+        {
+            "authors": [
+                {
+                    "fullName": "McAleer, Michael",
+                    "name": "Michael",
+                    "surname": "McAleer",
+                    "rank": 1,
+                    "pid": null
+                }
+            ],
+            "openAccessColor": "gold",
+            "publiclyFunded": false,
+            "type": "publication",
+            "language": {
+                "code": "eng",
+                "label": "English"
+            },
+            "countries": [
+                {
+                    "code": "NL",
+                    "label": "Netherlands",
+                    "provenance": null
+                }
+            ],
+            "subjects": [
+                {
+                    "subject": {
+                        "scheme": "keyword",
+                        "value": "SDG 3 - Good Health and Well-being"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "SDG",
+                        "value": "3. Good health"
+                    },
+                    "provenance": null
+                }
+            ],
+            "mainTitle": "A critique of recent medical research in JAMA on COVID-19",
+            "subTitle": null,
+            "descriptions": [
+                "<p>The world community has been changed irrevocably by the highly infectious and mutating SARSCoV-2 virus that causes the COVID-19 disease. The necessary research output on COVID-19 has been revolutionary, especially in the medical and biomedical sciences, where the search for a vaccine is essential for the world to have a semblance of normality in the era of COVID-19. Much of the advanced research has been distributed in the leading medical journals, including the Journal of the American Medical Association (JAMA), where the latest medical research is distributed on a daily basis, and where comments can also be published. The purpose of this paper is to provide a critique of 110 interesting and highly topical research papers that have been published in JAMA, mostly within the past two months. The diverse topics include: treating influenza and COVID-19 simultaneously, dealing with a second wave of COVID-19 in Beijing, honesty is best for known and unknown GAWI and WIST, unreliability of asymptomatic COVID-19 testing outcomes for children, the effectiveness of flu vaccines, acute anxiety during COVID-19, MAID as an end of life option, longer-term effects of corticosteroids on the mortality of critically ill COVID-19 patients, isolation, loneliness and psychological distress during COVID-19, the selection of volunteers for COVID-19 vaccine trials, the mental health of children and adolescents during COVID-19, fertility preservation through hormonal intervention for transgender adolescents, safe, effective and affordable COVID-19 vaccines, essential requirements for acceptance of a COVID-19 vaccine, ischemic stroke rates from COVID-19 and influenza, mandatory COVID-19 vaccination of children, COVID-19 asymptomatic children and adults, Who Dares Wins (Qui Audet Adipiscitur), even against COVID-19, global health security index and responses to COVID-19, quality of life and dying, immunity from COVID-19, whom to trust or not to trust regarding COVID-19, the value of health care for cancer patients, previous medical research bodes well for a COVID-19 vaccine, you cannot fight COVID-19 alone, causality between hypertension and COVID-19, coffee consumption and metastatic colorectal cancer, improving statistical analysis of health policies on children and adolescents, COVID-19 does not respect anyone, politics diminishes the integrity and reputation of healthcare agencies, primary, secondary and tertiary cancers in the lung, health care should include everyone, especially for COVID-19, prioritizing access to COVID-19 vaccines, further questions about COVID-19 vaccines, estimating direct and indirect excess deaths from COVID-19, herd immunity for COVID-19, daily eyeglass wear and COVID-19 infection, using anything that prevents the spread of COVID-19, deferral of care for serious non-COVID-19 conditions, society's united fight against depression and suicide, the positive outcomes in delaying low-risk thyroid cancer treatment during COVID-19, the likely future toll from COVID-19, excluding older persons from vaccine and clinical trials for COVID-19, peaceful miracles make the moment, dealing with COVID-19 science denial and conspiracy theories, masking and testing should be mandatory for COVID-19, journal reputation is established by scientific creativity and destroyed by political interference, impact and importance of medical research on COVID-19, support for COVID-19 long haulers, possible reinfection and long term recovery from COVID-19, Wabi-Sabi and the beauty of imperfection, good, better and best testing for COVID-19, surgical technical skill and long-term cancer survival, prior negative recovery from RT-PCR test results for COVID-19, age, frailty, and postoperative surgical outcomes, all journals should have diversity in the editorial and peer review process, an encompassing digital open access journal - JAMA Health Forum, righting inequities through otolaryngology in a COVID-19 normal America, resilient mental health in older adults under COVID-19, preventing suicides in a COVID-19 normal world, and COVID-19, voluntary participation in cancer clinical trials, herd immunity and COVID-19, psychological distress of US adults under COVID-19, repurposing drugs for COVID-19, same data + different models = different results, how do surges in COVID-19 affect healthcare spending?, causality between sedentary behavior and cancer mortality, overdose cardiac arrests and emergency medicine during COVID-19, COVID-19 asymptomatic children versus adults, why is care for serious non-COVID-19 conditions seemingly deferred?, confidentiality in a world of COVID-19 and fake news, mental healthcare data disrupted by COVID-19, do N95 face masks protect against COVID-19?, the necessity of face masks during COVID-19, nurses in COVID-19 vaccine trials, eye protection for COVID-19 ventilated patients, and healthcare access, social needs, unemployment insurance during COVID-19, pre-eminent experts evaluate the distribution of COVID-19 vaccines, the effects of current vaccines against SARS-CoV-2 and COVID-19 mutations, unbearable suffering needs to be respected, varied public attitudes toward COVID-19 vaccine mandates, enanthems, exanthems, and COVID-19, a wish list for a COVID-19 new year, critical statistical rigour before and during COVID-19, accepting vaccines is essential against COVID-19, and social distancing, health behaviour, cancer outcomes during COVID-19, readmission and death from COVID-19 after hospital discharge, beneficial lessons from COVID-19, estimating racial disparities in COVID-19 testing, paying people to be vaccinated against COVID-19, COVID-19 mutations and vaccines, mandatory vaccinations against COVID-19, allergic reactions to the first dose of the Pfizer vaccine, neutralization of monoclonal antibodies for COVID-19, pricing teledermatology during COVID-19, and SARS-CoV-2 COVID-19 are spreading virtually everywhere, transmission of SARS-CoV-2 and COVID-19 by children, addressing racial and ethnic health disparities during COVID-19, race and medical research during and after COVID-19, adherence to nonpharmaceutical interventions during COVID-19, further unanswered questions for cancer patients during COVID-19, how are children affected by COVID-19, is the California variant another COVID-19 escaped mutant?, tracking escaped mutants of SARS-CoV-2 and COVID-19, optimal timing separation and strength of prime and booster shots, confounding errors in response to COVID-19, durability and duration of approved vaccines against escaped mutants, and hospital mortality and hospice discharge of COVID-19 patients depend on population size.</p>"
+            ],
+            "publicationDate": "2021-01-01",
+            "publisher": "Asia University",
+            "embargoEndDate": null,
+            "sources": null,
+            "formats": null,
+            "contributors": null,
+            "coverages": null,
+            "bestAccessRight": {
+                "code": "c_abf2",
+                "label": "OPEN",
+                "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/"
+            },
+            "container": {
+                "name": "Advances in Decision Sciences",
+                "issnPrinted": "2090-3359",
+                "issnOnline": "2090-3367",
+                "issnLinking": null,
+                "ep": "102",
+                "iss": null,
+                "sp": "1",
+                "vol": "25",
+                "edition": null,
+                "conferencePlace": null,
+                "conferenceDate": null
+            },
+            "documentationUrls": null,
+            "codeRepositoryUrl": null,
+            "programmingLanguage": null,
+            "contactPeople": null,
+            "contactGroups": null,
+            "tools": null,
+            "size": null,
+            "version": null,
+            "geoLocations": null,
+            "id": "dris___01177::b731931846adb959f155fba661f919df",
+            "originalIds": [
+                "oai:pure.eur.nl:openaire_cris_publications/3ae5c87b-f955-4d4f-afde-800737b62ebf",
+                "50|dris___01177::b731931846adb959f155fba661f919df"
+            ],
+            "pids": null,
+            "dateOfCollection": null,
+            "lastUpdateTimeStamp": null,
+            "indicators": {
+                "citationImpact": {
+                    "citationCount": 0.0,
+                    "influence": 2.3811355e-09,
+                    "popularity": 1.4634384e-09,
+                    "impulse": 0.0,
+                    "citationClass": "C5",
+                    "influenceClass": "C5",
+                    "impulseClass": "C5",
+                    "popularityClass": "C5"
+                }
+            },
+            "projects": null,
+            "organizations": [
+                {
+                    "legalName": "Erasmus University Rotterdam",
+                    "acronym": "EUR",
+                    "id": "openorgs____::2f735203eb40d8389a881e874bee537a",
+                    "pids": [
+                        {
+                            "scheme": "OrgRef",
+                            "value": "1568097"
+                        },
+                        {
+                            "scheme": "RRID",
+                            "value": "RRID:SCR_011209"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "100007620"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "100007620"
+                        },
+                        {
+                            "scheme": "wikidata",
+                            "value": "Q633529"
+                        },
+                        {
+                            "scheme": "OrgReg",
+                            "value": "NL0010"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "2251050"
+                        },
+                        {
+                            "scheme": "PIC",
+                            "value": "999839335"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100001828"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100001828"
+                        },
+                        {
+                            "scheme": "mag_id",
+                            "value": "913958620"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100005797"
+                        },
+                        {
+                            "scheme": "ROR",
+                            "value": "https://ror.org/057w15z03"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100005797"
+                        },
+                        {
+                            "scheme": "GRID",
+                            "value": "grid.6906.9"
+                        },
+                        {
+                            "scheme": "Wikidata",
+                            "value": "Q633529"
+                        },
+                        {
+                            "scheme": "ISNI",
+                            "value": "0000000092621349"
+                        }
+                    ]
+                }
+            ],
+            "communities": [
+                {
+                    "code": "knowmad",
+                    "label": "Knowmad Institut",
+                    "provenance": null
+                },
+                {
+                    "code": "cancer-research",
+                    "label": "Cancer Research",
+                    "provenance": null
+                },
+                {
+                    "code": "netherlands",
+                    "label": "Netherlands Research Portal",
+                    "provenance": null
+                },
+                {
+                    "code": "covid-19",
+                    "label": "Corona Virus Disease",
+                    "provenance": null
+                }
+            ],
+            "collectedFrom": [
+                {
+                    "key": "eurocrisdris::f4d76177b6b0596c89958861709d3c77",
+                    "value": "Erasmus University Rotterdam - Research Information Portal"
+                }
+            ],
+            "instances": [
+                {
+                    "alternateIdentifiers": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.47654/v25y2021i1p40-142"
+                        }
+                    ],
+                    "accessRight": {
+                        "code": "c_abf2",
+                        "label": "OPEN",
+                        "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/",
+                        "openAccessRoute": "gold"
+                    },
+                    "type": "Review",
+                    "urls": [
+                        "https://pure.eur.nl/en/publications/3ae5c87b-f955-4d4f-afde-800737b62ebf",
+                        "https://doi.org/10.47654/V25Y2021I1P40-142"
+                    ],
+                    "publicationDate": "2021-01-01",
+                    "refereed": "nonPeerReviewed",
+                    "hostedBy": {
+                        "key": "doajarticles::a7f00a84e9fafac93573eaef5c574aff",
+                        "value": "Advances in Decision Sciences"
+                    },
+                    "collectedFrom": {
+                        "key": "eurocrisdris::f4d76177b6b0596c89958861709d3c77",
+                        "value": "Erasmus University Rotterdam - Research Information Portal"
+                    }
+                }
+            ],
+            "isGreen": false,
+            "isInDiamondJournal": false
+        },
+        {
+            "authors": [
+                {
+                    "fullName": "McAleer, Michael",
+                    "name": "Michael",
+                    "surname": "Mcaleer",
+                    "rank": 1,
+                    "pid": null
+                }
+            ],
+            "openAccessColor": "gold",
+            "publiclyFunded": false,
+            "type": "publication",
+            "language": {
+                "code": "und",
+                "label": "Undetermined"
+            },
+            "countries": [
+                {
+                    "code": "AU",
+                    "label": "Australia",
+                    "provenance": null
+                }
+            ],
+            "subjects": [
+                {
+                    "subject": {
+                        "scheme": "keyword",
+                        "value": "360"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "keyword",
+                        "value": "Coronavirus"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "FOS",
+                        "value": "03 medical and health sciences"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "FOS",
+                        "value": "0302 clinical medicine"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "keyword",
+                        "value": "COVID-19"
+                    },
+                    "provenance": null
+                },
+                {
+                    "subject": {
+                        "scheme": "SDG",
+                        "value": "3. Good health"
+                    },
+                    "provenance": null
+                }
+            ],
+            "mainTitle": "A Critique of Recent Medical Research in JAMA on COVID-19",
+            "subTitle": null,
+            "descriptions": [
+                "The world community has been changed irrevocably by the highly infectious and mutating SARSCoV-2 virus that causes the COVID-19 disease  The necessary research output on COVID-19 has been revolutionary, especially in the medical and biomedical sciences, where the search for a vaccine is essential for the world to have a semblance of normality in the era of COVID-19  Much of the advanced research has been distributed in the leading medical journals, including the Journal of the American Medical Association (JAMA), where the latest medical research is distributed on a daily basis, and where comments can also be published  The purpose of this paper is to provide a critique of 110 interesting and highly topical research papers that have been published in JAMA, mostly within the past two months  The diverse topics include: treating influenza and COVID-19 simultaneously, dealing with a second wave of COVID-19 in Beijing, honesty is best for known and unknown GAWI and WIST, unreliability of asymptomatic COVID-19 testing outcomes for children, the effectiveness of flu vaccines, acute anxiety during COVID-19, MAID as an end of life option, longer-term effects of corticosteroids on the mortality of critically ill COVID-19 patients, isolation, loneliness and psychological distress during COVID-19, the selection of volunteers for COVID-19 vaccine trials, the mental health of children and adolescents during COVID-19, fertility preservation through hormonal intervention for transgender adolescents, safe, effective and affordable COVID-19 vaccines, essential requirements for acceptance of a COVID-19 vaccine, ischemic stroke rates from COVID-19 and influenza, mandatory COVID-19 vaccination of children, COVID-19 asymptomatic children and adults, Who Dares Wins (Qui Audet Adipiscitur), even against COVID-19, global health security index and responses to COVID-19, quality of life and dying, immunity from COVID-19, whom to trust or not to trust regarding COVID-19, the value of health care for cancer patients, previous medical research bodes well for a COVID-19 vaccine, you cannot fight COVID-19 alone, causality between hypertension and COVID-19, coffee consumption and metastatic colorectal cancer, improving statistical analysis of health policies on children and adolescents, COVID-19 does not respect anyone, politics diminishes the integrity and reputation of healthcare agencies, primary, secondary and tertiary cancers in the lung, health care should include everyone, especially for COVID-19, prioritizing access to COVID-19 vaccines, further questions about COVID-19 vaccines, estimating direct and indirect excess deaths from COVID-19, herd immunity for COVID-19, daily eyeglass wear and COVID-19 infection, using anything that prevents the spread of COVID-19, deferral of care for serious non-COVID-19 conditions, society's united fight against depression and suicide, the positive outcomes in delaying low-risk thyroid cancer treatment during COVID-19, the likely future toll from COVID-19, excluding older persons from vaccine and clinical trials for COVID-19, peaceful miracles make the moment, dealing with COVID-19 science denial and conspiracy theories, masking and testing should be mandatory for COVID-19, journal reputation is established by scientific creativity and destroyed by political interference, impact and importance of medical research on COVID-19, support for COVID-19 long haulers, possible reinfection and long term recovery from COVID-19, Wabi-Sabi and the beauty of imperfection, good, better and best testing for COVID-19, surgical technical skill and long-term cancer survival, prior negative recovery from RT-PCR test results for COVID-19, age, frailty, and postoperative surgical outcomes, all journals should have diversity in the editorial and peer review process, an encompassing digital open access journal - JAMA Health Forum, righting inequities through otolaryngology in a COVID-19 normal America, resilient mental health in older adults under COVID-19, preventing suicides in a COVID-19 normal world, and COVID-19, voluntary art cipation in cancer clinical trials, herd immunity and COVID-19, psychological distress of US adults under COVID-19, repurposing drugs for COVID-19, same data + different models = different results, how do surges in COVID-19 affect healthcare spending?, causality between sedentary behavior and cancer mortality, overdose cardiac arrests and emergency medicine during COVID-19, COVID-19 asymptomatic children versus adults, why is care for serious non-COVID-19 conditions seemingly deferred?, confidentiality in a world of COVID-19 and fake news, mental healthcare data disrupted by COVID-19, do N95 face masks protect against COVID-19?, the necessity of face masks during COVID-19, nurses in COVID-19 vaccine trials, eye protection for COVID-19 ventilated patients, and healthcare access, social needs, unemployment insurance during COVID-19, pre-eminent experts evaluate the distribution of COVID-19 vaccines, the effects of current vaccines against SARS-CoV-2 and COVID-19 mutations, unbearable suffering needs to be respected, varied public attitudes toward COVID-19 vaccine mandates, enanthems, exanthems, and COVID-19, a wish list for a COVID-19 new year, critical statistical rigour before and during COVID-19, accepting vaccines is essential against COVID-19, and social distancing, health behaviour, cancer outcomes during COVID-19, readmission and death from COVID-19 after hospital discharge, beneficial lessons from COVID-19, estimating racial disparities in COVID-19 testing, paying people to be vaccinated against COVID-19, COVID-19 mutations and vaccines, mandatory vaccinations against COVID-19, allergic reactions to the first dose of the Pfizer vaccine, neutralization of monoclonal antibodies for COVID-19, pricing teledermatology during COVID-19, and SARS-CoV-2 COVID-19 are spreading virtually everywhere, transmission of SARS-CoV-2 and COVID-19 by children, addressing racial and ethnic health disparities during COVID-19, race and medical research during and after COVID-19, adherence to nonpharmaceutical interventions during COVID-19, further unanswered questions for cancer patients during COVID-19, how are children affected by COVID-19, is the California variant another COVID-19 escaped mutant?, tracking escaped mutants of SARS-CoV-2 and COVID-19, optimal timing separation and strength of prime and booster shots, confounding errors in response to COVID-19, durability and duration of approved vaccines against escaped mutants, and hospital mortality and hospice discharge of COVID-19 patients depend on population size  \u00c2\u00a9 2021 Hindawi Limited  All rights reserved"
+            ],
+            "publicationDate": "2021-01-01",
+            "publisher": "Scientific and Business World",
+            "embargoEndDate": null,
+            "sources": [
+                "Crossref"
+            ],
+            "formats": null,
+            "contributors": null,
+            "coverages": null,
+            "bestAccessRight": {
+                "code": "c_abf2",
+                "label": "OPEN",
+                "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/"
+            },
+            "container": {
+                "name": "Advances in Decision Sciences",
+                "issnPrinted": null,
+                "issnOnline": "2090-3367",
+                "issnLinking": null,
+                "ep": "142",
+                "iss": null,
+                "sp": "40",
+                "vol": "25",
+                "edition": null,
+                "conferencePlace": null,
+                "conferenceDate": null
+            },
+            "documentationUrls": null,
+            "codeRepositoryUrl": null,
+            "programmingLanguage": null,
+            "contactPeople": null,
+            "contactGroups": null,
+            "tools": null,
+            "size": null,
+            "version": null,
+            "geoLocations": null,
+            "id": "doi_dedup___::67742ab8b9855fe0c02663de1b7a1546",
+            "originalIds": [
+                "10.47654/v25y2021i1p40-142",
+                "50|doiboost____|67742ab8b9855fe0c02663de1b7a1546",
+                "3166603811",
+                "50|od_______293::7f792ea29389affe5077344a6a82ea86",
+                "oai:ses.library.usyd.edu.au:2123/24805",
+                "ftunivsydney:oai:ses.library.usyd.edu.au:2123/24805",
+                "50|base_oa_____::c6236e4cdbdcfe44b8c3331078bf1528"
+            ],
+            "pids": [
+                {
+                    "scheme": "doi",
+                    "value": "10.47654/v25y2021i1p40-142"
+                },
+                {
+                    "scheme": "handle",
+                    "value": "2123/24805"
+                }
+            ],
+            "dateOfCollection": null,
+            "lastUpdateTimeStamp": null,
+            "indicators": {
+                "citationImpact": {
+                    "citationCount": 0.0,
+                    "influence": 2.3811355e-09,
+                    "popularity": 1.4634384e-09,
+                    "impulse": 0.0,
+                    "citationClass": "C5",
+                    "influenceClass": "C5",
+                    "impulseClass": "C5",
+                    "popularityClass": "C5"
+                }
+            },
+            "projects": null,
+            "organizations": [
+                {
+                    "legalName": "University of Sydney",
+                    "acronym": "USYD",
+                    "id": "openorgs____::8ca10608a248910c25083c3dab4371c3",
+                    "pids": [
+                        {
+                            "scheme": "ROR",
+                            "value": "https://ror.org/0384j8v12"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100001774"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100006150"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100001248"
+                        },
+                        {
+                            "scheme": "Wikidata",
+                            "value": "Q55080124"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100007811"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "14725975"
+                        },
+                        {
+                            "scheme": "mag_id",
+                            "value": "129604602"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100006150"
+                        },
+                        {
+                            "scheme": "RRID",
+                            "value": "RRID:SCR_000381"
+                        },
+                        {
+                            "scheme": "wikidata",
+                            "value": "Q55080124"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "1686494"
+                        },
+                        {
+                            "scheme": "Wikidata",
+                            "value": "Q487556"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "100009028"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100001774"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100001196"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "100014824"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100005157"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "15096830"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100004365"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100001248"
+                        },
+                        {
+                            "scheme": "ISNI",
+                            "value": "000000041936834X"
+                        },
+                        {
+                            "scheme": "PIC",
+                            "value": "998403929"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "9052615"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "100014824"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100005157"
+                        },
+                        {
+                            "scheme": "GRID",
+                            "value": "grid.1013.3"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100001196"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "31928"
+                        },
+                        {
+                            "scheme": "wikidata",
+                            "value": "Q487556"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "100009028"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100007811"
+                        },
+                        {
+                            "scheme": "fundref",
+                            "value": "501100004365"
+                        }
+                    ]
+                },
+                {
+                    "legalName": "Asian University",
+                    "acronym": "AU",
+                    "id": "openorgs____::2a2d2c6ca7470d84f86d618bcafc1414",
+                    "pids": [
+                        {
+                            "scheme": "fundref",
+                            "value": "501100005007"
+                        },
+                        {
+                            "scheme": "Wikidata",
+                            "value": "Q4806490"
+                        },
+                        {
+                            "scheme": "mag_id",
+                            "value": "143578492"
+                        },
+                        {
+                            "scheme": "OrgRef",
+                            "value": "19859716"
+                        },
+                        {
+                            "scheme": "ISNI",
+                            "value": "0000000092639645"
+                        },
+                        {
+                            "scheme": "wikidata",
+                            "value": "Q4806490"
+                        },
+                        {
+                            "scheme": "FundRef",
+                            "value": "501100005007"
+                        },
+                        {
+                            "scheme": "ROR",
+                            "value": "https://ror.org/03z7kp760"
+                        },
+                        {
+                            "scheme": "ROR",
+                            "value": "https://ror.org/038a1tp19"
+                        },
+                        {
+                            "scheme": "GRID",
+                            "value": "grid.252470.6"
+                        }
+                    ]
+                }
+            ],
+            "communities": [
+                {
+                    "code": "knowmad",
+                    "label": "Knowmad Institut",
+                    "provenance": null
+                },
+                {
+                    "code": "cancer-research",
+                    "label": "Cancer Research",
+                    "provenance": null
+                },
+                {
+                    "code": "covid-19",
+                    "label": "Corona Virus Disease",
+                    "provenance": null
+                }
+            ],
+            "collectedFrom": [
+                {
+                    "key": "openaire____::df45502607927471ecf8a6ae83683ff5",
+                    "value": "Bielefeld Academic Search Engine (BASE)"
+                },
+                {
+                    "key": "openaire____::8ac8380272269217cb09a928c8caa993",
+                    "value": "UnpayWall"
+                },
+                {
+                    "key": "openaire____::081b82f96300b6a6e3d282bad31cb6e2",
+                    "value": "Crossref"
+                },
+                {
+                    "key": "openaire____::5f532a3fc4f1ea403f37070f59a7a53a",
+                    "value": "Microsoft Academic Graph"
+                },
+                {
+                    "key": "opendoar____::53c3bce66e43be4f209556518c2fcb54",
+                    "value": "Sydney eScholarship"
+                }
+            ],
+            "instances": [
+                {
+                    "pids": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.47654/v25y2021i1p40-142"
+                        }
+                    ],
+                    "accessRight": {
+                        "code": "c_abf2",
+                        "label": "OPEN",
+                        "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/",
+                        "openAccessRoute": "gold"
+                    },
+                    "type": "Article",
+                    "urls": [
+                        "https://doi.org/10.47654/v25y2021i1p40-142"
+                    ],
+                    "publicationDate": "2021-01-01",
+                    "refereed": "peerReviewed",
+                    "hostedBy": {
+                        "key": "doajarticles::a7f00a84e9fafac93573eaef5c574aff",
+                        "value": "Advances in Decision Sciences"
+                    },
+                    "collectedFrom": {
+                        "key": "openaire____::081b82f96300b6a6e3d282bad31cb6e2",
+                        "value": "Crossref"
+                    }
+                },
+                {
+                    "pids": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.47654/v25y2021i1p40-142"
+                        }
+                    ],
+                    "license": "CC BY",
+                    "accessRight": {
+                        "code": "c_abf2",
+                        "label": "OPEN",
+                        "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/",
+                        "openAccessRoute": "gold"
+                    },
+                    "type": "Article",
+                    "urls": [
+                        "https://iads.site/wp-content/uploads/papers/2021/A-Critique-of-Recent-Medical-Research-in-JAMA-on-COVID-19.pdf"
+                    ],
+                    "refereed": "nonPeerReviewed",
+                    "hostedBy": {
+                        "key": "doajarticles::a7f00a84e9fafac93573eaef5c574aff",
+                        "value": "Advances in Decision Sciences"
+                    },
+                    "collectedFrom": {
+                        "key": "openaire____::8ac8380272269217cb09a928c8caa993",
+                        "value": "UnpayWall"
+                    }
+                },
+                {
+                    "alternateIdentifiers": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.47654/v25y2021i1p40-142"
+                        },
+                        {
+                            "scheme": "mag_id",
+                            "value": "3166603811"
+                        }
+                    ],
+                    "type": "Other literature type",
+                    "urls": [
+                        "https://dx.doi.org/10.47654/v25y2021i1p40-142"
+                    ],
+                    "refereed": "nonPeerReviewed",
+                    "hostedBy": {
+                        "key": "openaire____::55045bd2a65019fd8e6741a755395c8c",
+                        "value": "Unknown Repository"
+                    },
+                    "collectedFrom": {
+                        "key": "openaire____::5f532a3fc4f1ea403f37070f59a7a53a",
+                        "value": "Microsoft Academic Graph"
+                    }
+                },
+                {
+                    "pids": [
+                        {
+                            "scheme": "handle",
+                            "value": "2123/24805"
+                        }
+                    ],
+                    "alternateIdentifiers": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.47654/v25y2021i1p40-142"
+                        }
+                    ],
+                    "accessRight": {
+                        "code": "c_abf2",
+                        "label": "OPEN",
+                        "scheme": "http://vocabularies.coar-repositories.org/documentation/access_rights/",
+                        "openAccessRoute": null
+                    },
+                    "type": "Article",
+                    "urls": [
+                        "https://hdl.handle.net/2123/24805"
+                    ],
+                    "publicationDate": "2021-01-01",
+                    "refereed": "nonPeerReviewed",
+                    "hostedBy": {
+                        "key": "opendoar____::53c3bce66e43be4f209556518c2fcb54",
+                        "value": "Sydney eScholarship"
+                    },
+                    "collectedFrom": {
+                        "key": "opendoar____::53c3bce66e43be4f209556518c2fcb54",
+                        "value": "Sydney eScholarship"
+                    }
+                },
+                {
+                    "pids": [
+                        {
+                            "scheme": "handle",
+                            "value": "2123/24805"
+                        }
+                    ],
+                    "alternateIdentifiers": [
+                        {
+                            "scheme": "doi",
+                            "value": "10.47654/v25y2021i1p40-142"
+                        }
+                    ],
+                    "type": "Article",
+                    "urls": [
+                        "https://doi.org/https://doi.org/10.47654/V25Y2021I1P40-142"
+                    ],
+                    "publicationDate": "2021-01-01",
+                    "refereed": "nonPeerReviewed",
+                    "hostedBy": {
+                        "key": "opendoar____::53c3bce66e43be4f209556518c2fcb54",
+                        "value": "The University of Sydney: Sydney eScholarship Repository"
+                    },
+                    "collectedFrom": {
+                        "key": "openaire____::df45502607927471ecf8a6ae83683ff5",
+                        "value": "Bielefeld Academic Search Engine (BASE)"
+                    }
+                }
+            ],
+            "isGreen": true,
+            "isInDiamondJournal": false
+        }
+    ]
+}

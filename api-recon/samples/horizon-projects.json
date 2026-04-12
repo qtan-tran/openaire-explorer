@@ -1,0 +1,83 @@
+{
+    "header": {
+        "numFound": 62162,
+        "maxScore": 6.1057763,
+        "queryTime": 56,
+        "page": 1,
+        "pageSize": 2
+    },
+    "results": [
+        {
+            "id": "ukri________::ac17a6291524831f7699980e93ff19e2",
+            "code": "10062954",
+            "acronym": null,
+            "title": "Horizon Europe (HORIZON) Call: HORIZON-INFRA-2021-DEV-02 Project: 101079773 \u00e2\u20ac\u201d EuPRAXIA ESFRI Project Preparatory Phase",
+            "websiteUrl": null,
+            "startDate": "2022-11-01",
+            "endDate": "2026-10-31",
+            "callIdentifier": null,
+            "keywords": null,
+            "openAccessMandateForPublications": false,
+            "openAccessMandateForDataset": false,
+            "subjects": null,
+            "fundings": [
+                {
+                    "shortName": "UKRI",
+                    "name": "UK Research and Innovation",
+                    "jurisdiction": "GB",
+                    "fundingStream": {
+                        "id": "UKRI::Horizon Europe Guarantee",
+                        "description": "Horizon Europe Guarantee"
+                    }
+                }
+            ],
+            "summary": "EuPRAXIA is a distributed, compact and innovative accelerator facility based on plasma technology. It has been selected for the 2021 Update of the ESFRI Roadmap. In its first phase, its consortium of 51 institutes and industry partners will construct an electron-beam driven plasma accelerator in the metropolitan area of Rome, thus bringing innovation, potential for spin-off companies, state-of-the art scientific applications and a vibrant international user community to the middle of Italy. In its second phase, EuPRAXIA will build one laser-driven plasma accelerator at a site to be chosen between several options in Europe. EuPRAXIA will serve users in ultra-fast science, e.g. on high-resolution medical imaging, deeply penetrating positron annihilation spectroscopy for materials and with Europe\u00e2\u20ac\u2122s most southern free-electron laser (FEL). It will offer fascinating capabilities for research on biomolecules, viruses and microscopic processes. EuPRAXIA will thus be a transformative step in the development of ultra-compact accelerators and applications. The Preparatory Phase project EuPRAXIA-PP will prepare its full implementation.",
+            "granted": {
+                "currency": "GBP",
+                "totalCost": 0.0,
+                "fundedAmount": 81871.0
+            },
+            "h2020Programmes": null,
+            "originalIds": [
+                "ukri________::10062954"
+            ]
+        },
+        {
+            "id": "corda_____he::2d6565c6425ea77e6106b36faf0d2008",
+            "code": "101056649",
+            "acronym": "RESAVER Pension Fund",
+            "title": "Support to RESAVER Pension Fund - Horizon Europe\n(Horizon Europe Work Programme 2021-2022)",
+            "websiteUrl": null,
+            "startDate": "2022-01-01",
+            "endDate": "2024-12-31",
+            "callIdentifier": "HORIZON-WIDERA-2021-RESAVER-IBA",
+            "keywords": null,
+            "openAccessMandateForPublications": true,
+            "openAccessMandateForDataset": true,
+            "subjects": [
+                "Support to RESAVER Pension Fund"
+            ],
+            "fundings": [
+                {
+                    "shortName": "EC",
+                    "name": "European Commission",
+                    "jurisdiction": "EU",
+                    "fundingStream": {
+                        "id": "EC::HE::HORIZON-AG",
+                        "description": "Horizon Europe Framework Programme - HORIZON Action Grant Budget-Based"
+                    }
+                }
+            ],
+            "summary": "The RESAVER Pension Fund is a special multi-country, cross-border occupational pension vehicle contributing to the removal of the obstacles of researchers\u00e2\u20ac\u2122 mobility in Europe through enabling mobile employees of research institutions to remain affiliated to the same\nsupplementary pension fund when moving between different countries and changing jobs.\n\nThe RESAVER Pension Fund stands for free movement of workers as a fundamental principle of the Treaty enshrined in Article 45 of the Treaty on the Functioning of the European Union and wants to create a future in which employees, researchers specifically, can move and work in EU without any additional difficulties related to accumulation of occupational and personal pension provisions.\n\nThe overall aim of the establishment of the RESAVER Pension Fund corresponds to the strategic objectives of the European Union on the creation of the European Research Area to enhance the competitiveness of a knowledge-based Europe. The more research institutions join\nthe RESAVER Pension Fund, the more effective it will be in removing pensions as a barrier to the mobility of researchers in Europe and the more it will fulfil its purpose of supporting the creation of a European research area.\n\nThe general objective of the RESAVER Pension Fund is to continue expanding its membership in all countries of the European Economic Area and support the third fiscal year of its core operations while the fund grows. Specifically, this means:\n\u00c2\u00b7 To ensure that the service providers carry out their roles effectively and deliver a smoothly operating pension process;\n\u00c2\u00b7 To finance the fees essential for the ongoing running of the RESAVER Pension Fund;\n\u00c2\u00b7 To ensure that the pension fund has the capacity to enroll new potential organisations.\n\nThe RESAVER Pension Fund was established in Belgium and received its authorisation to operate from the Belgian regulator (FSMA) on October 28, 2016.",
+            "granted": {
+                "currency": "EUR",
+                "totalCost": 1161350.0,
+                "fundedAmount": 850000.0
+            },
+            "h2020Programmes": null,
+            "originalIds": [
+                "corda_____he::101056649"
+            ]
+        }
+    ]
+}

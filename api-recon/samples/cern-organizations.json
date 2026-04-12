@@ -1,0 +1,43 @@
+{
+    "header": {
+        "numFound": 97,
+        "maxScore": 6.7898965,
+        "queryTime": 90,
+        "page": 1,
+        "pageSize": 2
+    },
+    "results": [
+        {
+            "legalShortName": "CERN-GS-SIS",
+            "legalName": "CERN Scientific Informations Service",
+            "websiteUrl": "https://scientific-info.cern/",
+            "alternativeNames": [
+                "CERN-GS-SIS"
+            ],
+            "country": {
+                "code": "EU",
+                "label": "European Union"
+            },
+            "id": "pending_org_::4d80ff584a38a2125a604e37fe9b78ed",
+            "pids": null,
+            "originalIds": [
+                "pending_org_::b01b1e063c1ecc41856e9267446a553f"
+            ]
+        },
+        {
+            "legalShortName": "CERN BE/ABP",
+            "legalName": "CERN BE/ABP",
+            "websiteUrl": null,
+            "alternativeNames": null,
+            "country": {
+                "code": "CH",
+                "label": "Switzerland"
+            },
+            "id": "pending_org_::52974f4198db5de1724bf96f26ea74c7",
+            "pids": null,
+            "originalIds": [
+                "pending_org_::b226d095af1e52e5e86313e9fb04e8cb"
+            ]
+        }
+    ]
+}
