@@ -2,67 +2,172 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design system tokens ─────────────────────────────────────────── */
+/* ── Design tokens — light mode (default) ────────────────────────── */
 :root {
-  /* Colors */
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px,
-    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Backgrounds */
+  --color-bg-primary:    0 0% 100%;       /* white */
+  --color-bg-secondary:  220 14% 96%;     /* slate-100 */
+  --color-bg-tertiary:   220 13% 91%;     /* slate-200 */
 
-  /* OpenAIRE OA color palette */
-  --oa-gold: #f59e0b;
-  --oa-green: #10b981;
-  --oa-bronze: #b45309;
-  --oa-hybrid: #6366f1;
-  --oa-closed: #ef4444;
+  /* Text */
+  --color-text-primary:   222 47% 11%;   /* slate-900 */
+  --color-text-secondary: 215 16% 47%;   /* slate-500 */
+  --color-text-muted:     215 14% 70%;   /* slate-400 */
 
-  /* Typography */
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Borders */
+  --color-border:         214 32% 91%;   /* slate-200 */
+  --color-border-subtle:  220 13% 95%;   /* slate-100 */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Accent (blue-600 equiv) */
+  --color-accent:         221 83% 53%;
+  --color-accent-hover:   221 83% 45%;
+  --color-accent-muted:   214 100% 97%;
+
+  /* Semantic */
+  --color-success:        160 84% 39%;   /* emerald-600 */
+  --color-warning:        38  92% 50%;   /* amber-500  */
+  --color-error:          0   72% 51%;   /* red-600    */
+  --color-error-hover:    0   72% 43%;
+
+  /* Open Access brand colors (fixed — no dark-mode shift) */
+  --color-oa-gold:    38  93% 51%;       /* #F59E0B */
+  --color-oa-green:   160 84% 39%;       /* #10B981 */
+  --color-oa-hybrid:  258 90% 66%;       /* #8B5CF6 */
+  --color-oa-bronze:  33  95% 45%;       /* #D97706 */
+  --color-oa-closed:  220  9% 46%;       /* #6B7280 */
+
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px,
-      rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* ── Dark mode ───────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-bg-primary:    222 84%  5%;    /* near black   */
+  --color-bg-secondary:  217 33%  9%;    /* dark navy    */
+  --color-bg-tertiary:   215 28% 14%;    /* slightly lighter */
+
+  --color-text-primary:   213 31% 91%;  /* slate-100 */
+  --color-text-secondary: 215 20% 65%;  /* slate-400 */
+  --color-text-muted:     215 16% 47%;  /* slate-500 */
+
+  --color-border:         217 33% 17%;  /* dark border  */
+  --color-border-subtle:  217 33% 13%;  /* darker still */
+
+  --color-accent:         217 91% 60%;  /* blue-400 in dark */
+  --color-accent-hover:   217 91% 70%;
+  --color-accent-muted:   217 33% 12%;
+
+  --color-success:        160 60% 45%;
+  --color-warning:        38  92% 55%;
+  --color-error:          0   72% 60%;
+  --color-error-hover:    0   72% 52%;
+
+  color-scheme: dark;
 }
 
 /* ── Base resets ─────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  background-color: var(--bg);
-  color: var(--text);
+  font-family: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(var(--color-bg-primary));
+  color: hsl(var(--color-text-primary));
 }
 
 #root {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+}
+
+/* ── Shimmer / skeleton animation ────────────────────────────────── */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--color-bg-secondary)) 25%,
+    hsl(var(--color-bg-tertiary))  50%,
+    hsl(var(--color-bg-secondary)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ── CSS-only Tooltip ────────────────────────────────────────────── */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  padding: 4px 10px;
+  background: hsl(var(--color-text-primary));
+  color: hsl(var(--color-bg-primary));
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 50;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+[data-tooltip-position="bottom"]::after {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+
+[data-tooltip-position="left"]::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 6px);
+  transform: translateY(-50%) scale(0.95);
+}
+
+[data-tooltip-position="left"]:hover::after,
+[data-tooltip-position="left"]:focus-visible::after {
+  transform: translateY(-50%) scale(1);
+}
+
+[data-tooltip-position="right"]::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 6px);
+  transform: translateY(-50%) scale(0.95);
+}
+
+[data-tooltip-position="right"]:hover::after,
+[data-tooltip-position="right"]:focus-visible::after {
+  transform: translateY(-50%) scale(1);
+}
+
+/* ── Focus ring utility ──────────────────────────────────────────── */
+.focus-ring {
+  outline: 2px solid hsl(var(--color-accent));
+  outline-offset: 2px;
 }
