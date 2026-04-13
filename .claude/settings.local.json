@@ -35,7 +35,8 @@
       "Bash(echo \"shared exit: $?\")",
       "Bash(npm ls:*)",
       "Bash(pkill -f \"vite\")",
-      "Bash(curl -s http://localhost:9003/)"
+      "Bash(curl -s http://localhost:9003/)",
+      "Bash(npm test:*)"
     ]
   }
 }

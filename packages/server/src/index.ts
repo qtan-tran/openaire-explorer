@@ -4,6 +4,17 @@ import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import { config } from "./config.js";
 import { logger } from "./lib/logger.js";
+import { getOpenAIREClient } from "./lib/openaire-client.js";
+import { searchRouter } from "./routes/search.routes.js";
+import { healthRouter } from "./routes/health.routes.js";
+import { errorHandler } from "./middleware/error-handler.js";
+
+// ─── Initialise shared client ─────────────────────────────────────────────────
+
+getOpenAIREClient({
+  baseUrl: config.OPENAIRE_BASE_URL,
+  cacheTtl: config.CACHE_TTL,
+});
 
 export const app = express();
 
@@ -22,6 +33,24 @@ app.use(
 );
 app.use(express.json({ limit: "1mb" }));
 
+// ─── Request logging ──────────────────────────────────────────────────────────
+
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on("finish", () => {
+    logger.info(
+      {
+        method: req.method,
+        url: req.url,
+        status: res.statusCode,
+        duration: Date.now() - start,
+      },
+      "request"
+    );
+  });
+  next();
+});
+
 // ─── Rate limiting ────────────────────────────────────────────────────────────
 
 app.use(
@@ -37,31 +66,18 @@ app.use(
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 
-app.get("/api/health", (_req, res) => {
-  res.json({
-    status: "ok",
-    timestamp: new Date().toISOString(),
-    env: config.NODE_ENV,
-  });
-});
+app.use("/api/health", healthRouter);
+app.use("/api/search", searchRouter);
 
-// ─── 404 & error handlers ─────────────────────────────────────────────────────
+// ─── 404 ──────────────────────────────────────────────────────────────────────
 
 app.use((_req, res) => {
-  res.status(404).json({ error: "Not found" });
+  res.status(404).json({ error: "Not found", code: "NOT_FOUND" });
 });
 
-app.use(
-  (
-    err: Error,
-    _req: express.Request,
-    res: express.Response,
-    _next: express.NextFunction
-  ) => {
-    logger.error({ err }, "Unhandled error");
-    res.status(500).json({ error: "Internal server error" });
-  }
-);
+// ─── Global error handler ─────────────────────────────────────────────────────
+
+app.use(errorHandler);
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 
