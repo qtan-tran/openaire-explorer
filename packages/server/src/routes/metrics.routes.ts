@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { z } from "zod";
 import { getOpenAIREClient } from "../lib/openaire-client.js";
-import { computeOADistribution } from "../lib/metrics-computer.js";
+import {
+  computeOADistribution,
+  computeTrendsData,
+} from "../lib/metrics-computer.js";
 import { CacheService } from "../lib/cache.js";
 import type { ResearchProduct, ResearchProductSearchParams } from "@openaire-explorer/shared";
 
@@ -10,21 +13,22 @@ export const metricsRouter = Router();
 // ─── Cache (5-min TTL) ────────────────────────────────────────────────────────
 const metricsCache = new CacheService(300);
 
-// ─── Query schema ─────────────────────────────────────────────────────────────
-const year = z.coerce
-  .number()
-  .int()
-  .min(1900)
-  .max(2100)
-  .optional();
+// ─── Shared schema primitives ─────────────────────────────────────────────────
+const year = z.coerce.number().int().min(1900).max(2100).optional();
 
-const oaDistributionSchema = z.object({
+const baseFiltersSchema = z.object({
   search: z.string().optional(),
   organizationId: z.string().optional(),
   projectId: z.string().optional(),
   funderShortName: z.string().optional(),
   fromYear: year,
   toYear: year,
+});
+
+const oaDistributionSchema = baseFiltersSchema;
+
+const trendsSchema = baseFiltersSchema.extend({
+  granularity: z.enum(["year", "quarter"]).optional().default("year"),
 });
 
 // ─── Cursor-paginate up to N products ────────────────────────────────────────
@@ -115,6 +119,65 @@ metricsRouter.get("/oa-distribution", async (req, res, next) => {
     });
 
     const result = computeOADistribution(products);
+    metricsCache.set(cacheKey, result);
+    res.json({ data: result });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ─── GET /api/metrics/trends ──────────────────────────────────────────────────
+metricsRouter.get("/trends", async (req, res, next) => {
+  const parse = trendsSchema.safeParse(req.query);
+  if (!parse.success) {
+    res
+      .status(400)
+      .json({ error: "Invalid query params", details: parse.error.flatten() });
+    return;
+  }
+
+  const q = parse.data;
+  const cacheKey = CacheService.buildKey(
+    "metrics/trends",
+    q as Record<string, string | number | undefined>
+  );
+  const cached = metricsCache.get(cacheKey);
+  if (cached) {
+    res.json({ data: cached });
+    return;
+  }
+
+  try {
+    const hasFilter =
+      q.search ||
+      q.organizationId ||
+      q.projectId ||
+      q.funderShortName ||
+      q.fromYear ||
+      q.toYear;
+
+    if (!hasFilter) {
+      res.json({
+        data: {
+          timeSeries: [],
+          cumulativeOutputs: [],
+          movingAverages: [],
+          summary: { totalOutputs: 0, avgYearlyGrowth: null, peakYear: "", peakCount: 0 },
+        },
+      });
+      return;
+    }
+
+    const products = await fetchProducts({
+      search: q.search,
+      relOrganizationId: q.organizationId,
+      relProjectId: q.projectId,
+      funder: q.funderShortName,
+      fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
+      toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+    });
+
+    const result = computeTrendsData(products, q.granularity);
     metricsCache.set(cacheKey, result);
     res.json({ data: result });
   } catch (err) {

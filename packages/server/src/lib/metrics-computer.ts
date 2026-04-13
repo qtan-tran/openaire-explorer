@@ -109,6 +109,223 @@ export function buildCitationProfile(products: ResearchProduct[]) {
   return profile;
 }
 
+// ─── Trends / time-series types ──────────────────────────────────────────────
+
+export type TrendsGranularity = "year" | "quarter";
+
+export interface TimeSeriesEntry {
+  period: string;
+  totalOutputs: number;
+  publications: number;
+  datasets: number;
+  software: number;
+  other: number;
+  oaRate: number;
+  /** Fraction relative to previous period, null for first period. */
+  growthRate: number | null;
+}
+
+export interface CumulativeEntry {
+  period: string;
+  cumulative: number;
+  publications: number;
+  datasets: number;
+  software: number;
+  other: number;
+}
+
+export interface MovingAverageEntry {
+  period: string;
+  ma3: number | null;
+  ma5: number | null;
+}
+
+export interface TrendsSummaryData {
+  totalOutputs: number;
+  avgYearlyGrowth: number | null;
+  peakYear: string;
+  peakCount: number;
+}
+
+export interface TrendsResult {
+  timeSeries: TimeSeriesEntry[];
+  cumulativeOutputs: CumulativeEntry[];
+  movingAverages: MovingAverageEntry[];
+  summary: TrendsSummaryData;
+}
+
+// ─── Trends computation helpers ───────────────────────────────────────────────
+
+function getPeriod(publicationDate: string, granularity: TrendsGranularity): string | null {
+  const currentYear = new Date().getFullYear();
+  const year = parseInt(publicationDate.slice(0, 4), 10);
+  if (!Number.isFinite(year) || year < 1900 || year > currentYear + 1) return null;
+
+  if (granularity === "year") return String(year);
+
+  // quarter
+  const month = parseInt(publicationDate.slice(5, 7), 10);
+  if (!Number.isFinite(month) || month < 1 || month > 12) return String(year); // fallback to year
+  const quarter = Math.ceil(month / 3);
+  return `${year}-Q${quarter}`;
+}
+
+/** Build time-series entries grouped by period (year or quarter). */
+export function computeTimeSeries(
+  products: ResearchProduct[],
+  granularity: TrendsGranularity = "year"
+): TimeSeriesEntry[] {
+  type Accumulator = {
+    totalOutputs: number;
+    publications: number;
+    datasets: number;
+    software: number;
+    other: number;
+    openCount: number;
+  };
+
+  const map = new Map<string, Accumulator>();
+
+  for (const p of products) {
+    if (!p.publicationDate) continue;
+    const period = getPeriod(p.publicationDate, granularity);
+    if (!period) continue;
+
+    if (!map.has(period)) {
+      map.set(period, {
+        totalOutputs: 0,
+        publications: 0,
+        datasets: 0,
+        software: 0,
+        other: 0,
+        openCount: 0,
+      });
+    }
+
+    const acc = map.get(period)!;
+    acc.totalOutputs++;
+
+    if (p.type === "publication") acc.publications++;
+    else if (p.type === "dataset") acc.datasets++;
+    else if (p.type === "software") acc.software++;
+    else acc.other++;
+
+    const cat = classifyOAStatus(p) as OACategory;
+    if (cat === "gold" || cat === "green" || cat === "hybrid") acc.openCount++;
+  }
+
+  // Sort periods chronologically
+  const sorted = Array.from(map.entries()).sort(([a], [b]) => a.localeCompare(b));
+
+  return sorted.map(([period, acc], i) => ({
+    period,
+    totalOutputs: acc.totalOutputs,
+    publications: acc.publications,
+    datasets: acc.datasets,
+    software: acc.software,
+    other: acc.other,
+    oaRate: acc.totalOutputs > 0 ? acc.openCount / acc.totalOutputs : 0,
+    growthRate:
+      i === 0
+        ? null
+        : (() => {
+            const prev = sorted[i - 1][1].totalOutputs;
+            return prev > 0 ? (acc.totalOutputs - prev) / prev : null;
+          })(),
+  }));
+}
+
+/** Compute growth rates for an already-sorted time series (in-place replacement). */
+export function computeGrowthRates(series: TimeSeriesEntry[]): TimeSeriesEntry[] {
+  return series.map((entry, i) => {
+    if (i === 0) return { ...entry, growthRate: null };
+    const prev = series[i - 1].totalOutputs;
+    return {
+      ...entry,
+      growthRate: prev > 0 ? (entry.totalOutputs - prev) / prev : null,
+    };
+  });
+}
+
+/** Compute moving averages for windows of 3 and 5 periods. */
+export function computeMovingAverages(series: TimeSeriesEntry[]): MovingAverageEntry[] {
+  return series.map((entry, i) => {
+    const window3 = series.slice(Math.max(0, i - 2), i + 1);
+    const window5 = series.slice(Math.max(0, i - 4), i + 1);
+
+    const avg = (w: TimeSeriesEntry[]) =>
+      Math.round(w.reduce((s, e) => s + e.totalOutputs, 0) / w.length);
+
+    return {
+      period: entry.period,
+      ma3: window3.length === 3 ? avg(window3) : null,
+      ma5: window5.length === 5 ? avg(window5) : null,
+    };
+  });
+}
+
+/** Compute running cumulative sums per type. */
+export function computeCumulative(series: TimeSeriesEntry[]): CumulativeEntry[] {
+  let cumulative = 0;
+  let publications = 0;
+  let datasets = 0;
+  let software = 0;
+  let other = 0;
+
+  return series.map((entry) => {
+    cumulative += entry.totalOutputs;
+    publications += entry.publications;
+    datasets += entry.datasets;
+    software += entry.software;
+    other += entry.other;
+    return {
+      period: entry.period,
+      cumulative,
+      publications,
+      datasets,
+      software,
+      other,
+    };
+  });
+}
+
+/** Full trends computation — single entry point. */
+export function computeTrendsData(
+  products: ResearchProduct[],
+  granularity: TrendsGranularity = "year"
+): TrendsResult {
+  const timeSeries = computeTimeSeries(products, granularity);
+  const movingAverages = computeMovingAverages(timeSeries);
+  const cumulativeOutputs = computeCumulative(timeSeries);
+
+  // Summary
+  const totalOutputs = products.length;
+  const peak = timeSeries.reduce<TimeSeriesEntry | null>(
+    (best, e) => (!best || e.totalOutputs > best.totalOutputs ? e : best),
+    null
+  );
+
+  const growthRates = timeSeries
+    .map((e) => e.growthRate)
+    .filter((r): r is number => r !== null);
+  const avgYearlyGrowth =
+    growthRates.length > 0
+      ? growthRates.reduce((s, r) => s + r, 0) / growthRates.length
+      : null;
+
+  return {
+    timeSeries,
+    cumulativeOutputs,
+    movingAverages,
+    summary: {
+      totalOutputs,
+      avgYearlyGrowth,
+      peakYear: peak?.period ?? "",
+      peakCount: peak?.totalOutputs ?? 0,
+    },
+  };
+}
+
 // ─── OA distribution aggregations ────────────────────────────────────────────
 
 /** Count products per OA category, grouped by publication year. */

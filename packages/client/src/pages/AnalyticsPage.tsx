@@ -10,7 +10,12 @@ import {
   OADistributionPanel,
   OADistributionSkeleton,
 } from "../components/analytics/OADistributionPanel";
+import {
+  TrendsPanel,
+  TrendsSkeleton,
+} from "../components/analytics/TrendsPanel";
 import { useOADistribution } from "../hooks/useOADistribution";
+import { useTrendsData } from "../hooks/useTrendsData";
 import type { OADistributionFilters } from "../hooks/useOADistribution";
 
 // ─── Tab definitions ──────────────────────────────────────────────────────────
@@ -19,7 +24,7 @@ type AnalyticsTab = "oa-distribution" | "trends" | "network";
 
 const TABS: { id: AnalyticsTab; label: string; ready: boolean }[] = [
   { id: "oa-distribution", label: "OA Distribution", ready: true },
-  { id: "trends",          label: "Trends",          ready: false },
+  { id: "trends",          label: "Trends",          ready: true },
   { id: "network",         label: "Network",          ready: false },
 ];
 
@@ -65,9 +70,7 @@ function TabBar({
 
 function OADistributionTab() {
   const [filters, setFilters] = useState<OADistributionFilters>({});
-
   const { data, isLoading, isError, error, refetch } = useOADistribution(filters);
-
   const hasFilter = Object.values(filters).some(Boolean);
 
   return (
@@ -94,6 +97,37 @@ function OADistributionTab() {
   );
 }
 
+// ─── Trends tab ───────────────────────────────────────────────────────────────
+
+function TrendsTab() {
+  const [filters, setFilters] = useState<OADistributionFilters>({});
+  const { data, isLoading, isError, error, refetch } = useTrendsData(filters);
+  const hasFilter = Object.values(filters).some(Boolean);
+
+  return (
+    <div className="flex flex-col gap-6">
+      <AnalyticsFilterBar filters={filters} onChange={setFilters} />
+
+      {!hasFilter ? (
+        <EmptyState
+          icon="📈"
+          title="Apply a filter to get started"
+          description="Enter a search term, funder, organization ID, or project ID to load trend data."
+        />
+      ) : isLoading ? (
+        <TrendsSkeleton />
+      ) : isError ? (
+        <ErrorState
+          description={(error as Error)?.message ?? "Failed to load trend data."}
+          onRetry={() => refetch()}
+        />
+      ) : data ? (
+        <TrendsPanel data={data} />
+      ) : null}
+    </div>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export function AnalyticsPage() {
@@ -112,16 +146,8 @@ export function AnalyticsPage() {
 
           <div>
             {tab === "oa-distribution" && <OADistributionTab />}
-
-            {tab === "trends" && (
-              <EmptyState
-                icon="📈"
-                title="Coming soon"
-                description="Publication trends analysis is under development."
-              />
-            )}
-
-            {tab === "network" && (
+            {tab === "trends"          && <TrendsTab />}
+            {tab === "network"         && (
               <EmptyState
                 icon="🕸️"
                 title="Coming soon"
