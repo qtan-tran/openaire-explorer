@@ -14,8 +14,13 @@ import {
   TrendsPanel,
   TrendsSkeleton,
 } from "../components/analytics/TrendsPanel";
+import {
+  NetworkPanel,
+  NetworkSkeleton,
+} from "../components/analytics/NetworkPanel";
 import { useOADistribution } from "../hooks/useOADistribution";
 import { useTrendsData } from "../hooks/useTrendsData";
+import { useNetworkData } from "../hooks/useNetworkData";
 import type { OADistributionFilters } from "../hooks/useOADistribution";
 
 // ─── Tab definitions ──────────────────────────────────────────────────────────
@@ -25,7 +30,7 @@ type AnalyticsTab = "oa-distribution" | "trends" | "network";
 const TABS: { id: AnalyticsTab; label: string; ready: boolean }[] = [
   { id: "oa-distribution", label: "OA Distribution", ready: true },
   { id: "trends",          label: "Trends",          ready: true },
-  { id: "network",         label: "Network",          ready: false },
+  { id: "network",         label: "Network",          ready: true  },
 ];
 
 // ─── Tab bar ──────────────────────────────────────────────────────────────────
@@ -128,6 +133,43 @@ function TrendsTab() {
   );
 }
 
+// ─── Network tab ──────────────────────────────────────────────────────────────
+
+function NetworkTab() {
+  const [filters, setFilters] = useState<OADistributionFilters>({});
+  const { data, isLoading, isError, error, refetch } = useNetworkData(filters);
+  const hasFilter = Object.values(filters).some(Boolean);
+
+  return (
+    <div className="flex flex-col gap-6">
+      <AnalyticsFilterBar filters={filters} onChange={setFilters} />
+
+      {!hasFilter ? (
+        <EmptyState
+          icon="🕸️"
+          title="Apply a filter to get started"
+          description="Enter a search term, funder, organization ID, or project ID to load the collaboration network."
+        />
+      ) : isLoading ? (
+        <NetworkSkeleton />
+      ) : isError ? (
+        <ErrorState
+          description={(error as Error)?.message ?? "Failed to load network data."}
+          onRetry={() => refetch()}
+        />
+      ) : data && data.nodes.length > 0 ? (
+        <NetworkPanel data={data} />
+      ) : data ? (
+        <EmptyState
+          icon="📭"
+          title="No network data"
+          description="No connections found for the selected filters. Try broadening your search."
+        />
+      ) : null}
+    </div>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export function AnalyticsPage() {
@@ -147,13 +189,7 @@ export function AnalyticsPage() {
           <div>
             {tab === "oa-distribution" && <OADistributionTab />}
             {tab === "trends"          && <TrendsTab />}
-            {tab === "network"         && (
-              <EmptyState
-                icon="🕸️"
-                title="Coming soon"
-                description="Collaboration network visualization is under development."
-              />
-            )}
+            {tab === "network"         && <NetworkTab />}
           </div>
         </div>
       </Container>

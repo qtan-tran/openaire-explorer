@@ -5,6 +5,7 @@ import {
   computeOADistribution,
   computeTrendsData,
 } from "../lib/metrics-computer.js";
+import { buildCollaborationGraph } from "../lib/graph-builder.js";
 import { CacheService } from "../lib/cache.js";
 import type { ResearchProduct, ResearchProductSearchParams } from "@openaire-explorer/shared";
 
@@ -29,6 +30,10 @@ const oaDistributionSchema = baseFiltersSchema;
 
 const trendsSchema = baseFiltersSchema.extend({
   granularity: z.enum(["year", "quarter"]).optional().default("year"),
+});
+
+const networkSchema = baseFiltersSchema.extend({
+  maxNodes: z.coerce.number().int().min(10).max(300).optional().default(100),
 });
 
 // ─── Cursor-paginate up to N products ────────────────────────────────────────
@@ -178,6 +183,67 @@ metricsRouter.get("/trends", async (req, res, next) => {
     });
 
     const result = computeTrendsData(products, q.granularity);
+    metricsCache.set(cacheKey, result);
+    res.json({ data: result });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ─── GET /api/metrics/network ─────────────────────────────────────────────────
+metricsRouter.get("/network", async (req, res, next) => {
+  const parse = networkSchema.safeParse(req.query);
+  if (!parse.success) {
+    res
+      .status(400)
+      .json({ error: "Invalid query params", details: parse.error.flatten() });
+    return;
+  }
+
+  const q = parse.data;
+  const cacheKey = CacheService.buildKey(
+    "metrics/network",
+    q as Record<string, string | number | undefined>
+  );
+  const cached = metricsCache.get(cacheKey);
+  if (cached) {
+    res.json({ data: cached });
+    return;
+  }
+
+  try {
+    const hasFilter =
+      q.search ||
+      q.organizationId ||
+      q.projectId ||
+      q.funderShortName ||
+      q.fromYear ||
+      q.toYear;
+
+    if (!hasFilter) {
+      res.json({
+        data: {
+          nodes: [],
+          edges: [],
+          metrics: { nodeCount: 0, edgeCount: 0, density: 0, avgDegree: 0, topNodes: [], components: 0 },
+        },
+      });
+      return;
+    }
+
+    const products = await fetchProducts(
+      {
+        search: q.search,
+        relOrganizationId: q.organizationId,
+        relProjectId: q.projectId,
+        funder: q.funderShortName,
+        fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
+        toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+      },
+      500 // cap at 500 products for graph building
+    );
+
+    const result = buildCollaborationGraph({ products, maxNodes: q.maxNodes });
     metricsCache.set(cacheKey, result);
     res.json({ data: result });
   } catch (err) {

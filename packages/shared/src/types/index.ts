@@ -130,6 +130,38 @@ export interface ComparisonResult {
   computedAt: string;
 }
 
+// ─── Network Graph ────────────────────────────────────────────────────────────
+
+export interface GraphNode {
+  id: string;
+  label: string;
+  type: "author" | "organization" | "project";
+  degree: number;
+  metadata?: Record<string, unknown>;
+}
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  weight: number;
+  type: "co-authorship" | "affiliated" | "funded";
+}
+
+export interface NetworkMetrics {
+  nodeCount: number;
+  edgeCount: number;
+  density: number;
+  avgDegree: number;
+  topNodes: Array<{ id: string; label: string; type: GraphNode["type"]; degree: number }>;
+  components: number;
+}
+
+export interface NetworkData {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  metrics: NetworkMetrics;
+}
+
 // ─── Open Access ──────────────────────────────────────────────────────────────
 
 export type OpenAccessColor = "gold" | "green" | "bronze" | "hybrid";
