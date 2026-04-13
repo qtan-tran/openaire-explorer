@@ -37,7 +37,8 @@
       "Bash(pkill -f \"vite\")",
       "Bash(curl -s http://localhost:9003/)",
       "Bash(npm test:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx vite:*)"
     ]
   }
 }

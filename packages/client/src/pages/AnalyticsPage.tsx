@@ -1,196 +1,124 @@
 import { useState } from "react";
-import clsx from "clsx";
+import { LayoutDashboard, Plus, RotateCcw } from "lucide-react";
 import { AppShell } from "../components/layout/AppShell";
 import { Container } from "../components/layout/Container";
 import { PageHeader } from "../components/layout/PageHeader";
+import { Button } from "../components/ui/Button";
 import { EmptyState } from "../components/ui/EmptyState";
-import { ErrorState } from "../components/ui/ErrorState";
-import { AnalyticsFilterBar } from "../components/analytics/AnalyticsFilterBar";
-import {
-  OADistributionPanel,
-  OADistributionSkeleton,
-} from "../components/analytics/OADistributionPanel";
-import {
-  TrendsPanel,
-  TrendsSkeleton,
-} from "../components/analytics/TrendsPanel";
-import {
-  NetworkPanel,
-  NetworkSkeleton,
-} from "../components/analytics/NetworkPanel";
-import { useOADistribution } from "../hooks/useOADistribution";
-import { useTrendsData } from "../hooks/useTrendsData";
-import { useNetworkData } from "../hooks/useNetworkData";
-import type { OADistributionFilters } from "../hooks/useOADistribution";
+import { DashboardProvider, useDashboard } from "../contexts/DashboardContext";
+import { DashboardGrid } from "../components/dashboard/DashboardGrid";
+import { WidgetPanel } from "../components/dashboard/WidgetPanel";
+import { AddWidgetModal } from "../components/dashboard/AddWidgetModal";
+import { DashboardFilters } from "../components/dashboard/DashboardFilters";
+import type { WidgetType, WidgetSize } from "../lib/widget-registry";
 
-// ─── Tab definitions ──────────────────────────────────────────────────────────
+// ─── Inner page (needs DashboardContext) ─────────────────────────────────────
 
-type AnalyticsTab = "oa-distribution" | "trends" | "network";
+function DashboardContent() {
+  const { panels, filters, addPanel, removePanel, updatePanelSize, resetLayout } =
+    useDashboard();
+  const [showModal, setShowModal] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
 
-const TABS: { id: AnalyticsTab; label: string; ready: boolean }[] = [
-  { id: "oa-distribution", label: "OA Distribution", ready: true },
-  { id: "trends",          label: "Trends",          ready: true },
-  { id: "network",         label: "Network",          ready: true  },
-];
+  function handleReset() {
+    if (confirmReset) {
+      resetLayout();
+      setConfirmReset(false);
+    } else {
+      setConfirmReset(true);
+      setTimeout(() => setConfirmReset(false), 3000);
+    }
+  }
 
-// ─── Tab bar ──────────────────────────────────────────────────────────────────
+  function handleAddWidget(type: WidgetType) {
+    addPanel(type);
+    setShowModal(false);
+  }
 
-function TabBar({
-  active,
-  onChange,
-}: {
-  active: AnalyticsTab;
-  onChange: (t: AnalyticsTab) => void;
-}) {
-  return (
-    <div className="flex border-b border-border">
-      {TABS.map((t) => (
-        <button
-          key={t.id}
-          type="button"
-          onClick={() => t.ready && onChange(t.id)}
-          disabled={!t.ready}
-          className={clsx(
-            "py-2.5 px-4 text-sm font-medium border-b-2 -mb-px transition-colors",
-            t.id === active
-              ? "border-accent text-accent"
-              : t.ready
-              ? "border-transparent text-text-secondary hover:text-foreground"
-              : "border-transparent text-text-muted cursor-not-allowed opacity-50"
-          )}
-        >
-          {t.label}
-          {!t.ready && (
-            <span className="ml-1.5 text-[10px] uppercase tracking-wider opacity-60">
-              soon
-            </span>
-          )}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-// ─── OA Distribution tab ──────────────────────────────────────────────────────
-
-function OADistributionTab() {
-  const [filters, setFilters] = useState<OADistributionFilters>({});
-  const { data, isLoading, isError, error, refetch } = useOADistribution(filters);
-  const hasFilter = Object.values(filters).some(Boolean);
+  function handleSizeChange(id: string, size: WidgetSize) {
+    updatePanelSize(id, size);
+  }
 
   return (
-    <div className="flex flex-col gap-6">
-      <AnalyticsFilterBar filters={filters} onChange={setFilters} />
+    <>
+      {/* Toolbar */}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-text-muted">
+          <LayoutDashboard className="h-4 w-4" />
+          <span className="text-sm">
+            {panels.length} widget{panels.length !== 1 ? "s" : ""}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            leftIcon={<RotateCcw className="h-3.5 w-3.5" />}
+            onClick={handleReset}
+            className={confirmReset ? "text-error border-error hover:bg-error/10" : ""}
+          >
+            {confirmReset ? "Click again to confirm" : "Reset layout"}
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            leftIcon={<Plus className="h-3.5 w-3.5" />}
+            onClick={() => setShowModal(true)}
+          >
+            Add widget
+          </Button>
+        </div>
+      </div>
 
-      {!hasFilter ? (
+      {/* Global filters */}
+      <DashboardFilters />
+
+      {/* Grid */}
+      {panels.length === 0 ? (
         <EmptyState
-          icon="🔍"
-          title="Apply a filter to get started"
-          description="Enter a search term, funder, organization ID, or project ID to load OA distribution data."
+          icon="📊"
+          title="No widgets yet"
+          description="Add widgets to start exploring your data."
+          action={{ label: "Add widget", onClick: () => setShowModal(true) }}
         />
-      ) : isLoading ? (
-        <OADistributionSkeleton />
-      ) : isError ? (
-        <ErrorState
-          description={(error as Error)?.message ?? "Failed to load analytics data."}
-          onRetry={() => refetch()}
-        />
-      ) : data ? (
-        <OADistributionPanel data={data} />
-      ) : null}
-    </div>
-  );
-}
+      ) : (
+        <DashboardGrid>
+          {panels.map((panel) => (
+            <WidgetPanel
+              key={panel.id}
+              panel={panel}
+              filters={filters}
+              onRemove={removePanel}
+              onSizeChange={handleSizeChange}
+            />
+          ))}
+        </DashboardGrid>
+      )}
 
-// ─── Trends tab ───────────────────────────────────────────────────────────────
-
-function TrendsTab() {
-  const [filters, setFilters] = useState<OADistributionFilters>({});
-  const { data, isLoading, isError, error, refetch } = useTrendsData(filters);
-  const hasFilter = Object.values(filters).some(Boolean);
-
-  return (
-    <div className="flex flex-col gap-6">
-      <AnalyticsFilterBar filters={filters} onChange={setFilters} />
-
-      {!hasFilter ? (
-        <EmptyState
-          icon="📈"
-          title="Apply a filter to get started"
-          description="Enter a search term, funder, organization ID, or project ID to load trend data."
-        />
-      ) : isLoading ? (
-        <TrendsSkeleton />
-      ) : isError ? (
-        <ErrorState
-          description={(error as Error)?.message ?? "Failed to load trend data."}
-          onRetry={() => refetch()}
-        />
-      ) : data ? (
-        <TrendsPanel data={data} />
-      ) : null}
-    </div>
-  );
-}
-
-// ─── Network tab ──────────────────────────────────────────────────────────────
-
-function NetworkTab() {
-  const [filters, setFilters] = useState<OADistributionFilters>({});
-  const { data, isLoading, isError, error, refetch } = useNetworkData(filters);
-  const hasFilter = Object.values(filters).some(Boolean);
-
-  return (
-    <div className="flex flex-col gap-6">
-      <AnalyticsFilterBar filters={filters} onChange={setFilters} />
-
-      {!hasFilter ? (
-        <EmptyState
-          icon="🕸️"
-          title="Apply a filter to get started"
-          description="Enter a search term, funder, organization ID, or project ID to load the collaboration network."
-        />
-      ) : isLoading ? (
-        <NetworkSkeleton />
-      ) : isError ? (
-        <ErrorState
-          description={(error as Error)?.message ?? "Failed to load network data."}
-          onRetry={() => refetch()}
-        />
-      ) : data && data.nodes.length > 0 ? (
-        <NetworkPanel data={data} />
-      ) : data ? (
-        <EmptyState
-          icon="📭"
-          title="No network data"
-          description="No connections found for the selected filters. Try broadening your search."
-        />
-      ) : null}
-    </div>
+      {/* Add widget modal */}
+      <AddWidgetModal
+        open={showModal}
+        onClose={() => setShowModal(false)}
+        onAdd={handleAddWidget}
+      />
+    </>
   );
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export function AnalyticsPage() {
-  const [tab, setTab] = useState<AnalyticsTab>("oa-distribution");
-
   return (
     <AppShell>
       <Container>
         <div className="flex flex-col gap-6 py-6">
           <PageHeader
-            title="Analytics"
-            description="Explore open access trends and research output patterns."
+            title="Analytics Dashboard"
+            description="Add, remove, and rearrange widgets to explore open access patterns."
           />
-
-          <TabBar active={tab} onChange={setTab} />
-
-          <div>
-            {tab === "oa-distribution" && <OADistributionTab />}
-            {tab === "trends"          && <TrendsTab />}
-            {tab === "network"         && <NetworkTab />}
-          </div>
+          <DashboardProvider>
+            <DashboardContent />
+          </DashboardProvider>
         </div>
       </Container>
     </AppShell>
