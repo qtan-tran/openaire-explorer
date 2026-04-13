@@ -17,6 +17,7 @@ import { RelatedEntitiesList } from "../components/detail/RelatedEntitiesList";
 
 import { useResearchProduct } from "../hooks/useResearchProduct";
 import { useRelatedProducts } from "../hooks/useRelatedProducts";
+import { useComparison } from "../hooks/useComparison";
 import type { ResearchProduct } from "@openaire-explorer/shared";
 
 // ─── Back button ──────────────────────────────────────────────────────────────
@@ -127,6 +128,8 @@ function ProductDetail({ product }: { product: ResearchProduct }) {
   const doi = product.pids?.find((p) => p.scheme.toLowerCase() === "doi")?.value;
   const peerReviewed = product.instances.some((i) => i.refereed === "peerReviewed");
   const impact = product.indicators?.citationImpact;
+  const { addEntity, removeEntity, isSelected, isFull } = useComparison();
+  const selected = isSelected(product.id);
 
   return (
     <div className="flex flex-col gap-8">
@@ -212,13 +215,18 @@ function ProductDetail({ product }: { product: ResearchProduct }) {
             </a>
           )}
           <Button
-            variant="secondary"
+            variant={selected ? "primary" : "secondary"}
             size="sm"
-            disabled
+            disabled={!selected && isFull}
             leftIcon={<PlusCircle className="h-3.5 w-3.5" aria-hidden />}
-            title="Comparison — coming soon"
+            onClick={() =>
+              selected
+                ? removeEntity(product.id)
+                : addEntity({ id: product.id, type: "research-product", name: product.mainTitle })
+            }
+            title={isFull && !selected ? "Comparison is full (max 5)" : undefined}
           >
-            Add to comparison
+            {selected ? "In comparison" : "Add to comparison"}
           </Button>
         </div>
       </div>

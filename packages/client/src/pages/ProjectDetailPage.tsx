@@ -18,6 +18,7 @@ import { Pagination } from "../components/search/Pagination";
 
 import { useProject } from "../hooks/useProject";
 import { useProjectProducts } from "../hooks/useProjectProducts";
+import { useComparison } from "../hooks/useComparison";
 import type { Project, ResearchProduct } from "@openaire-explorer/shared";
 
 // ─── Back button ──────────────────────────────────────────────────────────────
@@ -113,6 +114,8 @@ function ProjectDetail({ project }: { project: Project }) {
 
   const status = projectStatus(project.startDate, project.endDate);
   const primaryFunding = project.fundings?.[0];
+  const { addEntity, removeEntity, isSelected, isFull } = useComparison();
+  const selected = isSelected(project.id);
 
   return (
     <div className="flex flex-col gap-8">
@@ -163,13 +166,18 @@ function ProjectDetail({ project }: { project: Project }) {
             </a>
           )}
           <Button
-            variant="secondary"
+            variant={selected ? "primary" : "secondary"}
             size="sm"
-            disabled
+            disabled={!selected && isFull}
             leftIcon={<PlusCircle className="h-3.5 w-3.5" aria-hidden />}
-            title="Comparison — coming soon"
+            onClick={() =>
+              selected
+                ? removeEntity(project.id)
+                : addEntity({ id: project.id, type: "project", name: project.title })
+            }
+            title={isFull && !selected ? "Comparison is full (max 5)" : undefined}
           >
-            Add to comparison
+            {selected ? "In comparison" : "Add to comparison"}
           </Button>
         </div>
       </div>

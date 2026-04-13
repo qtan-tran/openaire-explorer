@@ -18,6 +18,7 @@ import { Pagination } from "../components/search/Pagination";
 
 import { useOrganization } from "../hooks/useOrganization";
 import { useOrganizationProducts } from "../hooks/useOrganizationProducts";
+import { useComparison } from "../hooks/useComparison";
 import type { Organization, ResearchProduct } from "@openaire-explorer/shared";
 
 // ─── Back button ──────────────────────────────────────────────────────────────
@@ -94,6 +95,8 @@ function OrgDetail({ org }: { org: Organization }) {
     org.id,
     { page, pageSize: 10 }
   );
+  const { addEntity, removeEntity, isSelected, isFull } = useComparison();
+  const selected = isSelected(org.id);
 
   return (
     <div className="flex flex-col gap-8">
@@ -129,13 +132,18 @@ function OrgDetail({ org }: { org: Organization }) {
             </a>
           )}
           <Button
-            variant="secondary"
+            variant={selected ? "primary" : "secondary"}
             size="sm"
-            disabled
+            disabled={!selected && isFull}
             leftIcon={<PlusCircle className="h-3.5 w-3.5" aria-hidden />}
-            title="Comparison — coming soon"
+            onClick={() =>
+              selected
+                ? removeEntity(org.id)
+                : addEntity({ id: org.id, type: "organization", name: org.legalName })
+            }
+            title={isFull && !selected ? "Comparison is full (max 5)" : undefined}
           >
-            Add to comparison
+            {selected ? "In comparison" : "Add to comparison"}
           </Button>
         </div>
       </div>

@@ -66,3 +66,26 @@ export async function fetchAPI<T>(
 
   return res.json() as Promise<T>;
 }
+
+export async function postAPI<T>(endpoint: string, body: unknown): Promise<T> {
+  const url = `${BASE_URL}${endpoint}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const b = await res
+      .json()
+      .catch(() => ({ error: res.statusText, code: "UNKNOWN" }));
+    throw new APIError(
+      res.status,
+      (b as { error?: string }).error ?? res.statusText,
+      (b as { code?: string }).code ?? "UNKNOWN"
+    );
+  }
+
+  return res.json() as Promise<T>;
+}

@@ -94,16 +94,40 @@ export interface ProjectSearchParams extends SearchParams {
 
 // ─── Comparison / metrics (application-layer types) ──────────────────────────
 
-export interface ComparisonRequest {
-  entityType: EntityType;
-  ids: string[];
-  metrics: string[];
+export interface ComparisonEntity {
+  id: string;
+  type: "research-product" | "organization" | "project";
+  name: string;
 }
 
-export interface MetricResult {
+export interface ComparisonMetrics {
   entityId: string;
-  metric: string;
-  value: number | string | null;
+  totalOutputs: number;
+  /** 0–1 fraction of products with OPEN / OPEN SOURCE access right */
+  oaRate: number;
+  outputsByType: {
+    publications: number;
+    datasets: number;
+    software: number;
+    other: number;
+  };
+  oaDistribution: {
+    gold: number;
+    green: number;
+    hybrid: number;
+    bronze: number;
+    closed: number;
+    unknown: number;
+  };
+  yearlyOutputs: Array<{ year: number; count: number }>;
+  /** counts per OpenAIRE citation class (C1 = top, C5 = bottom) */
+  citationProfile: { c1: number; c2: number; c3: number; c4: number; c5: number };
+}
+
+export interface ComparisonResult {
+  entities: ComparisonEntity[];
+  metrics: ComparisonMetrics[];
+  computedAt: string;
 }
 
 // ─── Open Access ──────────────────────────────────────────────────────────────
