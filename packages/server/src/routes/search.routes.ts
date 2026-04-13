@@ -81,6 +81,38 @@ searchRouter.get("/research-products/:id", async (req, res, next) => {
   }
 });
 
+searchRouter.get("/research-products/:id/related", async (req, res, next) => {
+  try {
+    const client = getOpenAIREClient();
+    const id = req.params["id"]!;
+    const page = Math.max(1, parseInt(String(req.query["page"] ?? "1"), 10) || 1);
+    const pageSize = Math.min(20, Math.max(1, parseInt(String(req.query["pageSize"] ?? "6"), 10) || 6));
+
+    // Fetch the product to discover its related project/org IDs
+    const product = await client.getResearchProduct(id);
+    const relProjectId = product.projects?.[0]?.id;
+    const relOrgId = product.organizations?.[0]?.id;
+
+    if (!relProjectId && !relOrgId) {
+      res.json({ data: [], meta: { page: 1, pageSize, totalResults: 0, totalPages: 0 } });
+      return;
+    }
+
+    const result = await client.searchResearchProducts({
+      relProjectId: relProjectId,
+      relOrganizationId: relProjectId ? undefined : relOrgId,
+      page,
+      pageSize: pageSize + 1, // fetch one extra to filter out self
+    });
+
+    // Exclude the source product
+    const filtered = result.results.filter((p) => p.id !== id).slice(0, pageSize);
+    res.json(paginated({ header: result.header, results: filtered }, page, pageSize));
+  } catch (err) {
+    next(err);
+  }
+});
+
 // ─── Organizations ────────────────────────────────────────────────────────────
 
 searchRouter.get(
@@ -110,6 +142,23 @@ searchRouter.get("/organizations/:id", async (req, res, next) => {
     const client = getOpenAIREClient();
     const org = await client.getOrganization(req.params["id"]!);
     res.json(single(org));
+  } catch (err) {
+    next(err);
+  }
+});
+
+searchRouter.get("/organizations/:id/products", async (req, res, next) => {
+  try {
+    const client = getOpenAIREClient();
+    const page = Math.max(1, parseInt(String(req.query["page"] ?? "1"), 10) || 1);
+    const pageSize = Math.min(50, Math.max(1, parseInt(String(req.query["pageSize"] ?? "10"), 10) || 10));
+
+    const result = await client.searchResearchProducts({
+      relOrganizationId: req.params["id"]!,
+      page,
+      pageSize,
+    });
+    res.json(paginated(result, page, pageSize));
   } catch (err) {
     next(err);
   }
@@ -147,6 +196,23 @@ searchRouter.get("/projects/:id", async (req, res, next) => {
     const client = getOpenAIREClient();
     const project = await client.getProject(req.params["id"]!);
     res.json(single(project));
+  } catch (err) {
+    next(err);
+  }
+});
+
+searchRouter.get("/projects/:id/products", async (req, res, next) => {
+  try {
+    const client = getOpenAIREClient();
+    const page = Math.max(1, parseInt(String(req.query["page"] ?? "1"), 10) || 1);
+    const pageSize = Math.min(50, Math.max(1, parseInt(String(req.query["pageSize"] ?? "10"), 10) || 10));
+
+    const result = await client.searchResearchProducts({
+      relProjectId: req.params["id"]!,
+      page,
+      pageSize,
+    });
+    res.json(paginated(result, page, pageSize));
   } catch (err) {
     next(err);
   }

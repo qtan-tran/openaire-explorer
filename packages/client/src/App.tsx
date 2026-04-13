@@ -4,6 +4,9 @@ import { AppShell } from "./components/layout";
 import { Container, PageHeader } from "./components/layout";
 import { EmptyState } from "./components/ui";
 import { SearchPage } from "./pages/SearchPage";
+import { ResearchProductDetailPage } from "./pages/ResearchProductDetailPage";
+import { OrganizationDetailPage } from "./pages/OrganizationDetailPage";
+import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 1000 * 60 * 5, retry: 1 } },
@@ -34,11 +37,10 @@ export default function App() {
           <Route path="/" element={<SearchPage />} />
           <Route path="/search" element={<SearchPage />} />
 
-          {/* Entity detail (placeholder) */}
-          <Route
-            path="/entity/:type/:id"
-            element={<ComingSoon title="Entity Detail" />}
-          />
+          {/* Entity detail pages */}
+          <Route path="/entity/product/:id" element={<ResearchProductDetailPage />} />
+          <Route path="/entity/organization/:id" element={<OrganizationDetailPage />} />
+          <Route path="/entity/project/:id" element={<ProjectDetailPage />} />
 
           {/* Compare (placeholder) */}
           <Route
