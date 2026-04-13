@@ -8,6 +8,7 @@ import { getOpenAIREClient } from "./lib/openaire-client.js";
 import { searchRouter } from "./routes/search.routes.js";
 import { healthRouter } from "./routes/health.routes.js";
 import { compareRouter } from "./routes/compare.routes.js";
+import { metricsRouter } from "./routes/metrics.routes.js";
 import { errorHandler } from "./middleware/error-handler.js";
 
 // ─── Initialise shared client ─────────────────────────────────────────────────
@@ -70,6 +71,7 @@ app.use(
 app.use("/api/health", healthRouter);
 app.use("/api/search", searchRouter);
 app.use("/api/compare", compareRouter);
+app.use("/api/metrics", metricsRouter);
 
 // ─── 404 ──────────────────────────────────────────────────────────────────────
 
