@@ -64,6 +64,8 @@ export interface SearchParams {
 export interface ResearchProductSearchParams extends SearchParams {
   type?: "publication" | "dataset" | "software" | "other";
   openAccessColor?: OpenAccessColor;
+  bestOpenAccessRightLabel?: string;
+  isGreen?: boolean;
   fromPublicationDate?: string;
   toPublicationDate?: string;
   doi?: string;
@@ -72,6 +74,8 @@ export interface ResearchProductSearchParams extends SearchParams {
   fundingStream?: string;
   communityList?: string;
   countryCode?: string;
+  relOrganizationId?: string;
+  relProjectId?: string;
 }
 
 export interface OrganizationSearchParams extends SearchParams {
