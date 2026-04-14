@@ -12,6 +12,7 @@
     "build": "npm run build --workspace=packages/shared && npm run build --workspace=packages/server && npm run build --workspace=packages/client",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
+    "test:coverage": "npm run test --workspaces --if-present -- --coverage",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "format": "prettier --write ."
   },
