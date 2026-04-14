@@ -38,7 +38,9 @@
       "Bash(curl -s http://localhost:9003/)",
       "Bash(npm test:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)"
     ]
   }
 }
