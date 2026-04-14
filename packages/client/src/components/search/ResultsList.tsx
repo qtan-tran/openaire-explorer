@@ -2,7 +2,11 @@ import { Skeleton } from "../ui/Skeleton";
 import { EmptyState } from "../ui/EmptyState";
 import { ErrorState } from "../ui/ErrorState";
 import { ResultCard } from "./ResultCard";
+import { VirtualizedResultsList } from "./VirtualizedResultsList";
 import type { SearchResultItem } from "./ResultCard";
+
+/** Switch to the virtualized list above this threshold to keep DOM nodes low. */
+const VIRTUALIZE_THRESHOLD = 50;
 
 interface ResultsListProps {
   items?: SearchResultItem[];
@@ -78,6 +82,11 @@ export function ResultsList({
         description="Try different search terms, broaden your filters, or check for spelling errors."
       />
     );
+  }
+
+  // Use virtualization for large lists to keep DOM node count low
+  if (items.length > VIRTUALIZE_THRESHOLD) {
+    return <VirtualizedResultsList items={items} />;
   }
 
   return (

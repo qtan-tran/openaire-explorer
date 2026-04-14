@@ -80,6 +80,8 @@ export class OpenAIREClient {
   private readonly maxRetries: number;
   private readonly rateLimiter: TokenBucketRateLimiter;
   readonly cache: CacheService;
+  /** Deduplicate concurrent requests for the same resource. */
+  private readonly _inflight = new Map<string, Promise<unknown>>();
 
   constructor(cfg: OpenAIREClientConfig) {
     this.baseUrl = cfg.baseUrl.replace(/\/$/, "");
@@ -98,6 +100,7 @@ export class OpenAIREClient {
    * Core fetch wrapper with:
    * - Rate limiting (token bucket)
    * - In-memory caching
+   * - In-flight request deduplication
    * - Retry on 429 / 5xx with exponential back-off
    * - Configurable timeout via AbortSignal
    */
@@ -114,6 +117,24 @@ export class OpenAIREClient {
       return cached;
     }
 
+    // In-flight deduplication: register the promise BEFORE any await so
+    // concurrent callers for the same resource share one network request.
+    const existing = this._inflight.get(cacheKey) as Promise<T> | undefined;
+    if (existing) {
+      logger.debug({ cacheKey }, "deduplicating in-flight request");
+      return existing;
+    }
+
+    const promise = this._executeRequest<T>(url, cacheKey);
+    this._inflight.set(cacheKey, promise as Promise<unknown>);
+    try {
+      return await promise;
+    } finally {
+      this._inflight.delete(cacheKey);
+    }
+  }
+
+  private async _executeRequest<T>(url: URL, cacheKey: string): Promise<T> {
     // Acquire rate-limit token before issuing the real request
     await this.rateLimiter.acquire();
 

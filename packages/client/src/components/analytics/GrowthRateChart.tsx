@@ -29,6 +29,7 @@ export function GrowthRateChart({ series }: GrowthRateChartProps) {
   );
 
   return (
+    <div className="relative h-[280px]">
     <Bar
       data={{
         labels,
@@ -44,8 +45,9 @@ export function GrowthRateChart({ series }: GrowthRateChartProps) {
         ],
       }}
       options={{
+        animation: false,
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -65,5 +67,6 @@ export function GrowthRateChart({ series }: GrowthRateChartProps) {
         },
       }}
     />
+    </div>
   );
 }

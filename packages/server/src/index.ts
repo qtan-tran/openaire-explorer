@@ -1,10 +1,12 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import compression from "compression";
 import { rateLimit } from "express-rate-limit";
 import { config } from "./config.js";
 import { logger } from "./lib/logger.js";
 import { getOpenAIREClient } from "./lib/openaire-client.js";
+import { warmCache } from "./lib/cache-warmer.js";
 import { searchRouter } from "./routes/search.routes.js";
 import { healthRouter } from "./routes/health.routes.js";
 import { compareRouter } from "./routes/compare.routes.js";
@@ -19,6 +21,10 @@ getOpenAIREClient({
 });
 
 export const app = express();
+
+// ─── Compression ─────────────────────────────────────────────────────────────
+// Must come before any routes so all responses are compressed.
+app.use(compression());
 
 // ─── Security & parsing ───────────────────────────────────────────────────────
 
@@ -88,5 +94,7 @@ app.use(errorHandler);
 if (process.env["VITEST"] === undefined) {
   app.listen(config.PORT, () => {
     logger.info(`Server listening on http://localhost:${config.PORT}`);
+    // Optional cache warm-up (set WARM_CACHE=true to enable)
+    warmCache().catch((err) => logger.warn({ err }, "Cache warm-up failed"));
   });
 }

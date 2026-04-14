@@ -87,8 +87,6 @@ compareRouter.post("/", async (req, res, next) => {
 
   try {
     const client = getOpenAIREClient();
-    const comparisonEntities: ComparisonEntity[] = [];
-    const metricsArr: ComparisonResult["metrics"] = [];
 
     const yearFilter: Partial<ResearchProductSearchParams> = {
       ...(filters?.fromYear
@@ -99,38 +97,43 @@ compareRouter.post("/", async (req, res, next) => {
         : {}),
     };
 
-    for (const entity of entities) {
-      let name: string;
-      let products: ResearchProduct[];
+    // Fetch all entities in parallel; within each org/project, also fetch
+    // entity metadata and products concurrently via inner Promise.all.
+    const resolved = await Promise.all(
+      entities.map(async (entity) => {
+        let name: string;
+        let products: ResearchProduct[];
 
-      if (entity.type === "organization") {
-        const org = await client.getOrganization(entity.id);
-        name = org.legalName;
-        products = await fetchProducts({
-          relOrganizationId: entity.id,
-          ...yearFilter,
-        });
-      } else if (entity.type === "project") {
-        const project = await client.getProject(entity.id);
-        name = project.title;
-        products = await fetchProducts({
-          relProjectId: entity.id,
-          ...yearFilter,
-        });
-      } else {
-        // research-product — metrics computed from the single item
-        const product = await client.getResearchProduct(entity.id);
-        name = product.mainTitle;
-        products = [product];
-      }
+        if (entity.type === "organization") {
+          const [org, prods] = await Promise.all([
+            client.getOrganization(entity.id),
+            fetchProducts({ relOrganizationId: entity.id, ...yearFilter }),
+          ]);
+          name = org.legalName;
+          products = prods;
+        } else if (entity.type === "project") {
+          const [project, prods] = await Promise.all([
+            client.getProject(entity.id),
+            fetchProducts({ relProjectId: entity.id, ...yearFilter }),
+          ]);
+          name = project.title;
+          products = prods;
+        } else {
+          const product = await client.getResearchProduct(entity.id);
+          name = product.mainTitle;
+          products = [product];
+        }
 
-      comparisonEntities.push({ id: entity.id, type: entity.type, name });
-      metricsArr.push(computeEntityMetrics(entity.id, products));
-    }
+        return {
+          entity: { id: entity.id, type: entity.type, name } as ComparisonEntity,
+          metrics: computeEntityMetrics(entity.id, products),
+        };
+      })
+    );
 
     const result: ComparisonResult = {
-      entities: comparisonEntities,
-      metrics: metricsArr,
+      entities: resolved.map((r) => r.entity),
+      metrics:  resolved.map((r) => r.metrics),
       computedAt: new Date().toISOString(),
     };
 

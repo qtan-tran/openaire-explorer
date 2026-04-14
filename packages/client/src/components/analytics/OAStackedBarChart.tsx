@@ -50,11 +50,13 @@ export function OAStackedBarChart({ data }: OAStackedBarChartProps) {
         </label>
       </div>
 
+      <div className="relative h-[280px]">
       <Bar
         data={{ labels: years, datasets }}
         options={{
+          animation: false,
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: {
               position: "top" as const,
@@ -85,6 +87,7 @@ export function OAStackedBarChart({ data }: OAStackedBarChartProps) {
           },
         }}
       />
+      </div>
     </div>
   );
 }

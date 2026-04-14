@@ -4,6 +4,7 @@ import { Badge } from "../ui/Badge";
 import type { BadgeVariant } from "../ui/Badge";
 import clsx from "clsx";
 import { Calendar, Building2, BookOpen, FlaskConical, Code2, Globe } from "lucide-react";
+import { usePrefetch } from "../../hooks/usePrefetch";
 
 // ─── Discriminated union ──────────────────────────────────────────────────────
 
@@ -73,13 +74,16 @@ function extractYear(date: string | null | undefined): string {
 
 function CardShell({
   to,
+  onMouseEnter,
   children,
 }: {
   to: string;
+  onMouseEnter?: () => void;
   children: React.ReactNode;
 }) {
   return (
     <article
+      onMouseEnter={onMouseEnter}
       className={clsx(
         "group relative flex flex-col gap-2 rounded-xl border border-border bg-background p-4",
         "transition-shadow duration-150 hover:shadow-md hover:border-border"
@@ -99,12 +103,16 @@ function CardShell({
 // ─── Research Product card ────────────────────────────────────────────────────
 
 function ProductCard({ item }: { item: ResearchProduct }) {
+  const { prefetchResearchProduct } = usePrefetch();
   const authors = truncateAuthors(item.authors);
   const year = extractYear(item.publicationDate);
   const description = truncateDescription(item.descriptions?.[0]);
 
   return (
-    <CardShell to={`/entity/product/${encodeURIComponent(item.id)}`}>
+    <CardShell
+      to={`/entity/product/${encodeURIComponent(item.id)}`}
+      onMouseEnter={() => prefetchResearchProduct(item.id)}
+    >
       {/* Top row: type badge + OA badge */}
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant="default" className="flex items-center gap-1">
@@ -155,8 +163,12 @@ function ProductCard({ item }: { item: ResearchProduct }) {
 // ─── Organization card ────────────────────────────────────────────────────────
 
 function OrgCard({ item }: { item: Organization }) {
+  const { prefetchOrganization } = usePrefetch();
   return (
-    <CardShell to={`/entity/organization/${encodeURIComponent(item.id)}`}>
+    <CardShell
+      to={`/entity/organization/${encodeURIComponent(item.id)}`}
+      onMouseEnter={() => prefetchOrganization(item.id)}
+    >
       <div className="flex items-center gap-2">
         <Badge variant="default" className="flex items-center gap-1">
           <Building2 className="h-3.5 w-3.5" aria-hidden />
@@ -203,11 +215,15 @@ function OrgCard({ item }: { item: Organization }) {
 // ─── Project card ─────────────────────────────────────────────────────────────
 
 function ProjectCard({ item }: { item: Project }) {
+  const { prefetchProject } = usePrefetch();
   const funder = item.fundings?.[0];
   const description = truncateDescription(item.summary);
 
   return (
-    <CardShell to={`/entity/project/${encodeURIComponent(item.id)}`}>
+    <CardShell
+      to={`/entity/project/${encodeURIComponent(item.id)}`}
+      onMouseEnter={() => prefetchProject(item.id)}
+    >
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant="default">Project</Badge>
         {funder && <Badge variant="success">{funder.shortName}</Badge>}

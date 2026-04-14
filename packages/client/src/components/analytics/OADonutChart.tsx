@@ -57,6 +57,7 @@ export function OADonutChart({ data }: OADonutChartProps) {
   const colors = OA_CATEGORIES.map((c) => OA_COLORS[c]);
 
   return (
+    <div className="relative h-[300px]">
     <Doughnut
       data={{
         labels: OA_CATEGORIES.map((c) => OA_LABELS[c]),
@@ -71,9 +72,10 @@ export function OADonutChart({ data }: OADonutChartProps) {
         ],
       }}
       options={{
+        animation: false,
         cutout: "68%",
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: "bottom" as const,
@@ -96,5 +98,6 @@ export function OADonutChart({ data }: OADonutChartProps) {
         },
       }}
     />
+    </div>
   );
 }

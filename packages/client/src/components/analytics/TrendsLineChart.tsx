@@ -113,11 +113,13 @@ export function TrendsLineChart({
   }
 
   return (
+    <div className="relative h-[300px]">
     <Line
       data={{ labels, datasets }}
       options={{
+        animation: false,
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
         plugins: {
           legend: {
@@ -146,5 +148,6 @@ export function TrendsLineChart({
         },
       }}
     />
+    </div>
   );
 }

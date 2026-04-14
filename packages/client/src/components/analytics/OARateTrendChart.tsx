@@ -34,8 +34,9 @@ export function OARateTrendChart({ data }: OARateTrendChartProps) {
   const refLine = years.map(() => 50);
 
   const options: ChartOptions<"line"> = {
+    animation: false,
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
       legend: { display: true, position: "top" },
@@ -60,6 +61,7 @@ export function OARateTrendChart({ data }: OARateTrendChartProps) {
   };
 
   return (
+    <div className="relative h-[240px]">
     <Line
       data={{
         labels: years,
@@ -87,5 +89,6 @@ export function OARateTrendChart({ data }: OARateTrendChartProps) {
       }}
       options={options}
     />
+    </div>
   );
 }

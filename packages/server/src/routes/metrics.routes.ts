@@ -6,6 +6,7 @@ import {
   computeTrendsData,
 } from "../lib/metrics-computer.js";
 import { buildCollaborationGraph } from "../lib/graph-builder.js";
+import { streamProducts } from "../lib/stream-fetcher.js";
 import { CacheService } from "../lib/cache.js";
 import type { ResearchProduct, ResearchProductSearchParams } from "@openaire-explorer/shared";
 
@@ -246,6 +247,33 @@ metricsRouter.get("/network", async (req, res, next) => {
     const result = buildCollaborationGraph({ products, maxNodes: q.maxNodes });
     metricsCache.set(cacheKey, result);
     res.json({ data: result });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// ─── GET /api/metrics/oa-distribution/stream (SSE) ───────────────────────────
+metricsRouter.get("/oa-distribution/stream", async (req, res, next) => {
+  const parse = oaDistributionSchema.safeParse(req.query);
+  if (!parse.success) {
+    res.status(400).json({ error: "Invalid query params", details: parse.error.flatten() });
+    return;
+  }
+
+  const q = parse.data;
+
+  try {
+    await streamProducts(res, {
+      params: {
+        search: q.search,
+        relOrganizationId: q.organizationId,
+        relProjectId: q.projectId,
+        funder: q.funderShortName,
+        fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
+        toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+      },
+      maxResults: 2000,
+    });
   } catch (err) {
     next(err);
   }
