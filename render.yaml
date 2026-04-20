@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: openaire-explorer-api
+    runtime: node
+    buildCommand: cd packages/server && npm install && npm run build
+    startCommand: cd packages/server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: OPENAIRE_BASE_URL
+        value: https://api.openaire.eu/graph
+      - key: CACHE_TTL
+        value: 300
+      - key: CORS_ORIGIN
+        sync: false
