@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Globe, ExternalLink, Calendar, PlusCircle } from "lucide-react";
-import clsx from "clsx";
 
 import { AppShell } from "../components/layout/AppShell";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/Card";

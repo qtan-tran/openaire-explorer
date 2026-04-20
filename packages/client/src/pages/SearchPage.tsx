@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import clsx from "clsx";
 import { SlidersHorizontal } from "lucide-react";
@@ -9,12 +9,12 @@ import { FilterSidebar } from "../components/search/FilterSidebar";
 import type { SearchFilters } from "../components/search/FilterSidebar";
 import { ResultsList } from "../components/search/ResultsList";
 import { Pagination } from "../components/search/Pagination";
+import { SortDropdown } from "../components/search/SortDropdown";
 import {
-  SortDropdown,
   RESEARCH_PRODUCT_SORT_OPTIONS,
   PROJECT_SORT_OPTIONS,
   ORGANIZATION_SORT_OPTIONS,
-} from "../components/search/SortDropdown";
+} from "../components/search/sort-options";
 import type { SearchResultItem } from "../components/search/ResultCard";
 import type { ResearchProduct, Organization, Project } from "@openaire-explorer/shared";
 
@@ -83,6 +83,7 @@ export function SearchPage() {
 
   const handleSearch = useCallback(
     (value: string) => {
+      setMobileFilterOpen(false);
       setSearchParams(
         (prev) => buildParams(prev, { q: value || null, page: null }),
         { replace: true }
@@ -92,12 +93,14 @@ export function SearchPage() {
   );
 
   const handleTabChange = (tab: EntityTab) => {
+    setMobileFilterOpen(false);
     setSearchParams((prev) =>
       buildParams(prev, { type: tab === "all" ? null : tab, page: null, sortBy: null })
     );
   };
 
   const handleFiltersChange = (filters: SearchFilters) => {
+    setMobileFilterOpen(false);
     setSearchParams((prev) =>
       buildParams(prev, {
         fromYear: filters.fromYear || null,
@@ -111,6 +114,7 @@ export function SearchPage() {
   };
 
   const handlePageChange = (newPage: number) => {
+    setMobileFilterOpen(false);
     setSearchParams((prev) =>
       buildParams(prev, { page: String(newPage) })
     );
@@ -118,15 +122,11 @@ export function SearchPage() {
   };
 
   const handleSortChange = (value: string) => {
+    setMobileFilterOpen(false);
     setSearchParams((prev) =>
       buildParams(prev, { sortBy: value || null, page: null })
     );
   };
-
-  // Close mobile sidebar when navigating
-  useEffect(() => {
-    setMobileFilterOpen(false);
-  }, [searchParams]);
 
   // ── Derived ───────────────────────────────────────────────────────────────
 

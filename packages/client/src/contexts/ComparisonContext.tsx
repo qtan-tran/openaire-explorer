@@ -86,6 +86,7 @@ export function ComparisonProvider({ children }: { children: ReactNode }) {
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useComparisonContext(): ComparisonContextValue {
   const ctx = useContext(ComparisonContext);
   if (!ctx) {

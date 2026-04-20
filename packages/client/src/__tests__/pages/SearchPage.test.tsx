@@ -1,5 +1,5 @@
 import { describe, test, expect, vi, beforeEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
@@ -209,7 +209,6 @@ describe("SearchPage", () => {
   test("renders Filters button", () => {
     render(<SearchPage />, { wrapper: Wrapper });
     // Filter button (Filters with icon)
-    const filterBtn = screen.queryByRole("button", { name: /filter/i });
     // May be labeled differently — just verify page renders
     expect(screen.getByRole("searchbox")).toBeTruthy();
   });

@@ -16,7 +16,7 @@ function applyTheme(theme: Theme) {
   document.documentElement.setAttribute("data-theme", theme);
   try {
     localStorage.setItem(STORAGE_KEY, theme);
-  } catch (_) {
+  } catch {
     // localStorage may be blocked in private mode
   }
 }

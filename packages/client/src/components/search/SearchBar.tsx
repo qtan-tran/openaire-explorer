@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import clsx from "clsx";
 
@@ -18,7 +18,9 @@ export function SearchBar({
   const [value, setValue] = useState(defaultValue);
   // Always call latest onSearch without restarting the debounce timer
   const onSearchRef = useRef(onSearch);
-  onSearchRef.current = onSearch;
+  useLayoutEffect(() => {
+    onSearchRef.current = onSearch;
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {

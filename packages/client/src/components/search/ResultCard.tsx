@@ -58,9 +58,8 @@ function truncateAuthors(authors: ResearchProduct["authors"], max = 3): string {
   return authors.length > max ? `${names.join(", ")} et al.` : names.join(", ");
 }
 
-function truncateDescription(text: string | null | undefined, lines = 2): string {
+function truncateDescription(text: string | null | undefined): string {
   if (!text) return "";
-  // Rough 2-line approximation: ~180 chars
   if (text.length <= 180) return text;
   return text.slice(0, 180).replace(/\s+\S*$/, "") + "…";
 }
