@@ -5,13 +5,14 @@ const BASE_URL =
 // ─── Error ────────────────────────────────────────────────────────────────────
 
 export class APIError extends Error {
-  constructor(
-    public readonly status: number,
-    message: string,
-    public readonly code: string
-  ) {
+  readonly status: number;
+  readonly code: string;
+
+  constructor(status: number, message: string, code: string) {
     super(message);
     this.name = "APIError";
+    this.status = status;
+    this.code = code;
   }
 }
 

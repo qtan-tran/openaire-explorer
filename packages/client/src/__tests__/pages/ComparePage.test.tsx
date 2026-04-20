@@ -96,7 +96,7 @@ describe("ComparePage", () => {
       refetch: vi.fn(),
       status: "pending",
       fetchStatus: "idle",
-    } as ReturnType<typeof useComparisonResults>);
+    } as unknown as ReturnType<typeof useComparisonResults>);
   });
 
   test("renders the page title", () => {
@@ -148,7 +148,7 @@ describe("ComparePage", () => {
       refetch: vi.fn(),
       status: "pending",
       fetchStatus: "fetching",
-    } as ReturnType<typeof useComparisonResults>);
+    } as unknown as ReturnType<typeof useComparisonResults>);
 
     render(<ComparePage />, { wrapper: Wrapper });
     // Just check it renders without crashing
@@ -172,7 +172,7 @@ describe("ComparePage", () => {
       refetch: vi.fn(),
       status: "success",
       fetchStatus: "idle",
-    } as ReturnType<typeof useComparisonResults>);
+    } as unknown as ReturnType<typeof useComparisonResults>);
 
     render(<ComparePage />, { wrapper: Wrapper });
     // ComparisonTable renders entity names as headers
@@ -207,7 +207,7 @@ describe("ComparePage", () => {
       refetch: vi.fn(),
       status: "error",
       fetchStatus: "idle",
-    } as ReturnType<typeof useComparisonResults>);
+    } as unknown as ReturnType<typeof useComparisonResults>);
 
     render(<ComparePage />, { wrapper: Wrapper });
     // Error state renders — just check page doesn't crash

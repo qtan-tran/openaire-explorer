@@ -40,7 +40,7 @@ export function ComparisonBarChart({ entities, metrics }: ComparisonBarChartProp
 
   return (
     <Bar
-      data={{ labels: OA_CATEGORIES, datasets }}
+      data={{ labels: [...OA_CATEGORIES], datasets }}
       options={{
         responsive: true,
         maintainAspectRatio: true,

@@ -229,7 +229,7 @@ export function computeTimeSeries(
       i === 0
         ? null
         : (() => {
-            const prev = sorted[i - 1][1].totalOutputs;
+            const prev = sorted[i - 1]![1].totalOutputs;
             return prev > 0 ? (acc.totalOutputs - prev) / prev : null;
           })(),
   }));
@@ -239,7 +239,7 @@ export function computeTimeSeries(
 export function computeGrowthRates(series: TimeSeriesEntry[]): TimeSeriesEntry[] {
   return series.map((entry, i) => {
     if (i === 0) return { ...entry, growthRate: null };
-    const prev = series[i - 1].totalOutputs;
+    const prev = series[i - 1]!.totalOutputs;
     return {
       ...entry,
       growthRate: prev > 0 ? (entry.totalOutputs - prev) / prev : null,
