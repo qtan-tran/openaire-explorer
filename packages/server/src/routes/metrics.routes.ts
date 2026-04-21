@@ -116,12 +116,12 @@ metricsRouter.get("/oa-distribution", async (req, res, next) => {
     }
 
     const products = await fetchProducts({
-      search: q.search,
-      relOrganizationId: q.organizationId,
-      relProjectId: q.projectId,
-      funder: q.funderShortName,
-      fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
-      toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+      ...(q.search && { search: q.search }),
+      ...(q.organizationId && { relOrganizationId: q.organizationId }),
+      ...(q.projectId && { relProjectId: q.projectId }),
+      ...(q.funderShortName && { funder: q.funderShortName }),
+      ...(q.fromYear && { fromPublicationDate: `${q.fromYear}-01-01` }),
+      ...(q.toYear && { toPublicationDate: `${q.toYear}-12-31` }),
     });
 
     const result = computeOADistribution(products);
@@ -175,12 +175,12 @@ metricsRouter.get("/trends", async (req, res, next) => {
     }
 
     const products = await fetchProducts({
-      search: q.search,
-      relOrganizationId: q.organizationId,
-      relProjectId: q.projectId,
-      funder: q.funderShortName,
-      fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
-      toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+      ...(q.search && { search: q.search }),
+      ...(q.organizationId && { relOrganizationId: q.organizationId }),
+      ...(q.projectId && { relProjectId: q.projectId }),
+      ...(q.funderShortName && { funder: q.funderShortName }),
+      ...(q.fromYear && { fromPublicationDate: `${q.fromYear}-01-01` }),
+      ...(q.toYear && { toPublicationDate: `${q.toYear}-12-31` }),
     });
 
     const result = computeTrendsData(products, q.granularity);

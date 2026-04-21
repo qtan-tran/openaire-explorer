@@ -173,7 +173,7 @@ describe("buildResearchProductQuery", () => {
   });
 
   test("omits undefined and empty values", () => {
-    const result = buildResearchProductQuery({ search: "test", type: undefined });
+    const result = buildResearchProductQuery({ search: "test" });
     expect(result).not.toHaveProperty("type");
     expect(result).toHaveProperty("search", "test");
   });

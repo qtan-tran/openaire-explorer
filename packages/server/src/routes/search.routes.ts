@@ -50,18 +50,18 @@ searchRouter.get(
       const client = getOpenAIREClient();
 
       const result = await client.searchResearchProducts({
-        search: q.search,
-        type: q.type,
-        fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
-        toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
-        bestOpenAccessRightLabel: q.oaStatus,
-        openAccessColor: q.openAccessColor,
-        relOrganizationId: q.organizationId,
-        relProjectId: q.projectId,
-        funder: q.funderShortName,
-        page: q.page,
-        pageSize: q.pageSize,
-        sortBy: q.sortBy,
+        ...(q.search !== undefined && { search: q.search }),
+        ...(q.type !== undefined && { type: q.type }),
+        ...(q.fromYear && { fromPublicationDate: `${q.fromYear}-01-01` }),
+        ...(q.toYear && { toPublicationDate: `${q.toYear}-12-31` }),
+        ...(q.oaStatus !== undefined && { bestOpenAccessRightLabel: q.oaStatus }),
+        ...(q.openAccessColor !== undefined && { openAccessColor: q.openAccessColor }),
+        ...(q.organizationId !== undefined && { relOrganizationId: q.organizationId }),
+        ...(q.projectId !== undefined && { relProjectId: q.projectId }),
+        ...(q.funderShortName !== undefined && { funder: q.funderShortName }),
+        ...(q.page !== undefined && { page: q.page }),
+        ...(q.pageSize !== undefined && { pageSize: q.pageSize }),
+        ...(q.sortBy !== undefined && { sortBy: q.sortBy }),
       });
 
       res.json(paginated(result, q.page ?? 1, q.pageSize ?? 10));
@@ -99,8 +99,8 @@ searchRouter.get("/research-products/:id/related", async (req, res, next) => {
     }
 
     const result = await client.searchResearchProducts({
-      relProjectId: relProjectId,
-      relOrganizationId: relProjectId ? undefined : relOrgId,
+      ...(relProjectId && { relProjectId }),
+      ...(!relProjectId && relOrgId && { relOrganizationId: relOrgId }),
       page,
       pageSize: pageSize + 1, // fetch one extra to filter out self
     });
@@ -124,10 +124,10 @@ searchRouter.get(
       const client = getOpenAIREClient();
 
       const result = await client.searchOrganizations({
-        search: q.search,
-        countryCode: q.countryCode,
-        page: q.page,
-        pageSize: q.pageSize,
+        ...(q.search !== undefined && { search: q.search }),
+        ...(q.countryCode !== undefined && { countryCode: q.countryCode }),
+        ...(q.page !== undefined && { page: q.page }),
+        ...(q.pageSize !== undefined && { pageSize: q.pageSize }),
       });
 
       res.json(paginated(result, q.page ?? 1, q.pageSize ?? 10));
@@ -175,13 +175,13 @@ searchRouter.get(
       const client = getOpenAIREClient();
 
       const result = await client.searchProjects({
-        search: q.search,
-        funder: q.funderShortName,
-        fromStartDate: q.fromStartDate,
-        toEndDate: q.toStartDate,
-        page: q.page,
-        pageSize: q.pageSize,
-        sortBy: q.sortBy,
+        ...(q.search !== undefined && { search: q.search }),
+        ...(q.funderShortName !== undefined && { funder: q.funderShortName }),
+        ...(q.fromStartDate !== undefined && { fromStartDate: q.fromStartDate }),
+        ...(q.toStartDate !== undefined && { toEndDate: q.toStartDate }),
+        ...(q.page !== undefined && { page: q.page }),
+        ...(q.pageSize !== undefined && { pageSize: q.pageSize }),
+        ...(q.sortBy !== undefined && { sortBy: q.sortBy }),
       });
 
       res.json(paginated(result, q.page ?? 1, q.pageSize ?? 10));

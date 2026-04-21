@@ -71,7 +71,7 @@ describe("buildCollaborationGraph — basic construction", () => {
   });
 
   test("creates co-authorship edge for two authors on one product", () => {
-    const product = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
+    const product = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
     const { nodes, edges } = buildCollaborationGraph({ products: [product] });
 
     const authorNodes = nodes.filter((n) => n.type === "author");
@@ -83,8 +83,8 @@ describe("buildCollaborationGraph — basic construction", () => {
   });
 
   test("increments co-authorship edge weight on repeat collaboration", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
-    const p2 = makeProduct("p2", [AUTHORS['alice'], AUTHORS['bob']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
+    const p2 = makeProduct("p2", [AUTHORS['alice']!, AUTHORS['bob']!]);
     const { edges } = buildCollaborationGraph({ products: [p1, p2] });
 
     const coEdges = edges.filter((e) => e.type === "co-authorship");
@@ -93,7 +93,7 @@ describe("buildCollaborationGraph — basic construction", () => {
   });
 
   test("creates affiliated edge between author and organization", () => {
-    const product = makeProduct("p1", [AUTHORS['alice']], [ORGS['mit']]);
+    const product = makeProduct("p1", [AUTHORS['alice']!], [ORGS['mit']!]);
     const { edges } = buildCollaborationGraph({ products: [product] });
 
     const affiliated = edges.filter((e) => e.type === "affiliated");
@@ -101,8 +101,8 @@ describe("buildCollaborationGraph — basic construction", () => {
   });
 
   test("creates org node for each unique organization", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice']], [ORGS['mit']]);
-    const p2 = makeProduct("p2", [AUTHORS['bob']], [ORGS['mit'], ORGS['cern']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!], [ORGS['mit']!]);
+    const p2 = makeProduct("p2", [AUTHORS['bob']!], [ORGS['mit']!, ORGS['cern']!]);
     const { nodes } = buildCollaborationGraph({ products: [p1, p2] });
 
     const orgNodes = nodes.filter((n) => n.type === "organization");
@@ -112,7 +112,7 @@ describe("buildCollaborationGraph — basic construction", () => {
   });
 
   test("creates funded edge between author and project", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice']], [], [{ id: "proj::001", acronym: "TEST" }]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!], [], [{ id: "proj::001", acronym: "TEST" }]);
     const { edges } = buildCollaborationGraph({ products: [p1] });
 
     const funded = edges.filter((e) => e.type === "funded");
@@ -135,7 +135,7 @@ describe("buildCollaborationGraph — basic construction", () => {
   });
 
   test("author with only self (1 author) creates no co-authorship edge", () => {
-    const product = makeProduct("p1", [AUTHORS['alice']]);
+    const product = makeProduct("p1", [AUTHORS['alice']!]);
     const { edges } = buildCollaborationGraph({ products: [product] });
     expect(edges.filter((e) => e.type === "co-authorship")).toHaveLength(0);
   });
@@ -143,7 +143,7 @@ describe("buildCollaborationGraph — basic construction", () => {
   test("excludes authors with empty fullName", () => {
     // Alice + Bob co-author (both gain degree ≥ 1); bad author has empty name and is skipped
     const badAuthor = { fullName: "", name: null, surname: null, rank: 1, pid: null };
-    const product = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob'], badAuthor]);
+    const product = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!, badAuthor]);
     const { nodes } = buildCollaborationGraph({ products: [product] });
     const authorNodes = nodes.filter((n) => n.type === "author");
     // Only Alice and Bob should appear; empty-named author produces no node
@@ -159,7 +159,7 @@ describe("buildCollaborationGraph — basic construction", () => {
 describe("buildCollaborationGraph — density", () => {
   test("fully connected triangle has density 1.0", () => {
     // 3 authors on 1 product → 3 co-authorship edges, n=3, maxEdges=3 → density=1
-    const product = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob'], AUTHORS['charlie']]);
+    const product = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!, AUTHORS['charlie']!]);
     const { metrics } = buildCollaborationGraph({ products: [product] });
 
     const authorNodeCount = 3;
@@ -170,8 +170,8 @@ describe("buildCollaborationGraph — density", () => {
 
   test("line graph (A-B, B-C) has density 2/3", () => {
     // p1: Alice+Bob, p2: Bob+Charlie → 2 edges, n=3, maxEdges=3 → density=2/3
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
-    const p2 = makeProduct("p2", [AUTHORS['bob'], AUTHORS['charlie']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
+    const p2 = makeProduct("p2", [AUTHORS['bob']!, AUTHORS['charlie']!]);
     const { metrics } = buildCollaborationGraph({ products: [p1, p2] });
 
     expect(metrics.nodeCount).toBe(3);
@@ -181,7 +181,7 @@ describe("buildCollaborationGraph — density", () => {
 
   test("single node has density 0", () => {
     // Single author with no co-authors → isolated → pruned → 0 nodes
-    const product = makeProduct("p1", [AUTHORS['alice']]);
+    const product = makeProduct("p1", [AUTHORS['alice']!]);
     const { metrics } = buildCollaborationGraph({ products: [product] });
     expect(metrics.density).toBe(0);
   });
@@ -192,8 +192,8 @@ describe("buildCollaborationGraph — density", () => {
 describe("buildCollaborationGraph — pruning", () => {
   test("isolated nodes (degree 0) are excluded", () => {
     // p1: Alice+Bob (connected), p2: Charlie only (isolated after author extraction — 1 author = no edges)
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
-    const p2 = makeProduct("p2", [AUTHORS['charlie']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
+    const p2 = makeProduct("p2", [AUTHORS['charlie']!]);
     const { nodes } = buildCollaborationGraph({ products: [p1, p2] });
     // Charlie is isolated (degree 0) and should be pruned
     const nodeIds = nodes.map((n) => n.id);
@@ -205,7 +205,7 @@ describe("buildCollaborationGraph — pruning", () => {
     // Hub (Alice) will have high degree; others should have low degree
     const products = Array.from({ length: 5 }, (_, i) => {
       const peerAuthor = { fullName: `Peer ${i}`, name: null, surname: null, rank: 2, pid: null };
-      return makeProduct(`p${i}`, [AUTHORS['alice'], peerAuthor]);
+      return makeProduct(`p${i}`, [AUTHORS['alice']!, peerAuthor]);
     });
 
     const { nodes } = buildCollaborationGraph({ products, maxNodes: 3 });
@@ -242,31 +242,31 @@ describe("buildCollaborationGraph — pruning", () => {
 describe("buildCollaborationGraph — components", () => {
   test("single connected component for all co-authors", () => {
     // Alice-Bob-Charlie all co-author together → 1 component
-    const product = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob'], AUTHORS['charlie']]);
+    const product = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!, AUTHORS['charlie']!]);
     const { metrics } = buildCollaborationGraph({ products: [product] });
     expect(metrics.components).toBe(1);
   });
 
   test("two disconnected pairs → 2 components", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
-    const p2 = makeProduct("p2", [AUTHORS['charlie'], AUTHORS['diana']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
+    const p2 = makeProduct("p2", [AUTHORS['charlie']!, AUTHORS['diana']!]);
     const { metrics } = buildCollaborationGraph({ products: [p1, p2] });
     expect(metrics.components).toBe(2);
   });
 
   test("three disconnected pairs → 3 components", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
-    const p2 = makeProduct("p2", [AUTHORS['charlie'], AUTHORS['diana']]);
-    const p3 = makeProduct("p3", [AUTHORS['evan'], { fullName: "Fred", name: null, surname: null, rank: 2, pid: null }]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
+    const p2 = makeProduct("p2", [AUTHORS['charlie']!, AUTHORS['diana']!]);
+    const p3 = makeProduct("p3", [AUTHORS['evan']!, { fullName: "Fred", name: null, surname: null, rank: 2, pid: null }]);
     const { metrics } = buildCollaborationGraph({ products: [p1, p2, p3] });
     expect(metrics.components).toBe(3);
   });
 
   test("chain connection creates single component", () => {
     // A-B, B-C, C-D → all in one component
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
-    const p2 = makeProduct("p2", [AUTHORS['bob'], AUTHORS['charlie']]);
-    const p3 = makeProduct("p3", [AUTHORS['charlie'], AUTHORS['diana']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
+    const p2 = makeProduct("p2", [AUTHORS['bob']!, AUTHORS['charlie']!]);
+    const p3 = makeProduct("p3", [AUTHORS['charlie']!, AUTHORS['diana']!]);
     const { metrics } = buildCollaborationGraph({ products: [p1, p2, p3] });
     expect(metrics.components).toBe(1);
   });
@@ -282,7 +282,7 @@ describe("buildCollaborationGraph — components", () => {
 describe("buildCollaborationGraph — metrics", () => {
   test("topNodes contains up to 10 highest-degree nodes", () => {
     const products = Array.from({ length: 3 }, (_, i) =>
-      makeProduct(`p${i}`, [AUTHORS['alice'], AUTHORS['bob'], AUTHORS['charlie']])
+      makeProduct(`p${i}`, [AUTHORS['alice']!, AUTHORS['bob']!, AUTHORS['charlie']!])
     );
     const { metrics } = buildCollaborationGraph({ products });
     expect(metrics.topNodes.length).toBeLessThanOrEqual(10);
@@ -293,13 +293,13 @@ describe("buildCollaborationGraph — metrics", () => {
   });
 
   test("avgDegree is positive for a connected graph", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!]);
     const { metrics } = buildCollaborationGraph({ products: [p1] });
     expect(metrics.avgDegree).toBeGreaterThan(0);
   });
 
   test("nodeCount and edgeCount match nodes/edges arrays", () => {
-    const p1 = makeProduct("p1", [AUTHORS['alice'], AUTHORS['bob'], AUTHORS['charlie']]);
+    const p1 = makeProduct("p1", [AUTHORS['alice']!, AUTHORS['bob']!, AUTHORS['charlie']!]);
     const { nodes, edges, metrics } = buildCollaborationGraph({ products: [p1] });
     expect(metrics.nodeCount).toBe(nodes.length);
     expect(metrics.edgeCount).toBe(edges.length);

@@ -17,6 +17,7 @@ import type {
   CommunityRef,
   CollectedFromRef,
   AccessRight,
+  OpenAccessColor,
   Indicators,
   Container,
   Language,
@@ -77,7 +78,7 @@ function normalizeAccessRight(raw: unknown): AccessRight | null {
     code: str(r["code"]),
     label: str(r["label"]),
     scheme: str(r["scheme"]),
-    openAccessRoute: strOrNull(r["openAccessRoute"]) as AccessRight["openAccessRoute"],
+    openAccessRoute: strOrNull(r["openAccessRoute"]) as OpenAccessColor | null,
   };
 }
 
@@ -139,12 +140,12 @@ function normalizeInstance(raw: unknown): Instance {
   const r = obj(raw);
   const ar = normalizeAccessRight(r["accessRight"]);
   return {
-    pids: Array.isArray(r["pids"]) ? r["pids"].map(normalizePid) : undefined,
-    alternateIdentifiers: Array.isArray(r["alternateIdentifiers"])
-      ? r["alternateIdentifiers"].map(normalizePid)
-      : undefined,
-    license: strOrNull(r["license"]) ?? undefined,
-    accessRight: ar ?? undefined,
+    ...(Array.isArray(r["pids"]) && { pids: (r["pids"] as unknown[]).map(normalizePid) }),
+    ...(Array.isArray(r["alternateIdentifiers"]) && {
+      alternateIdentifiers: (r["alternateIdentifiers"] as unknown[]).map(normalizePid),
+    }),
+    license: strOrNull(r["license"]),
+    ...(ar !== null && { accessRight: ar }),
     type: str(r["type"], "unknown"),
     urls: arr(r["urls"], (u) => str(u)),
     publicationDate: strOrNull(r["publicationDate"]),
@@ -153,12 +154,12 @@ function normalizeInstance(raw: unknown): Instance {
       key: str(obj(r["hostedBy"])["key"]),
       value: str(obj(r["hostedBy"])["value"]),
     },
-    collectedFrom: r["collectedFrom"]
-      ? {
-          key: str(obj(r["collectedFrom"])["key"]),
-          value: str(obj(r["collectedFrom"])["value"]),
-        }
-      : undefined,
+    ...(r["collectedFrom"] && {
+      collectedFrom: {
+        key: str(obj(r["collectedFrom"])["key"]),
+        value: str(obj(r["collectedFrom"])["value"]),
+      },
+    }),
   };
 }
 

@@ -150,7 +150,7 @@ export function SearchPage() {
       fromYear: fromYear || undefined,
       toYear: toYear || undefined,
       oaStatus: oaStatus || undefined,
-      openAccessColor: openAccessColor as ResearchProduct["openAccessColor"] | undefined,
+      openAccessColor: openAccessColor || undefined,
       funderShortName: funder || undefined,
       page,
       pageSize,

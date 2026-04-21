@@ -36,13 +36,13 @@ describe("buildResearchProductQuery", () => {
   });
 
   test("strips undefined values", () => {
-    const result = buildResearchProductQuery({ search: "test", type: undefined });
+    const result = buildResearchProductQuery({ search: "test" });
     expect(result).not.toHaveProperty("type");
     expect(result["search"]).toBe("test");
   });
 
   test("strips null values", () => {
-    const result = buildResearchProductQuery({ search: "test", sortBy: undefined });
+    const result = buildResearchProductQuery({ search: "test" });
     expect(result).not.toHaveProperty("sortBy");
   });
 
@@ -101,7 +101,7 @@ describe("buildOrganizationQuery", () => {
   });
 
   test("strips undefined fields", () => {
-    const result = buildOrganizationQuery({ search: "MIT", countryCode: undefined });
+    const result = buildOrganizationQuery({ search: "MIT" });
     expect(result).not.toHaveProperty("countryCode");
   });
 
@@ -132,7 +132,7 @@ describe("buildProjectQuery", () => {
   });
 
   test("strips undefined params", () => {
-    const result = buildProjectQuery({ search: "AI", funder: undefined });
+    const result = buildProjectQuery({ search: "AI" });
     expect(result).not.toHaveProperty("funder");
     expect(result["search"]).toBe("AI");
   });
