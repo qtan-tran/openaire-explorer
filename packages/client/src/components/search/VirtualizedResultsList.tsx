@@ -21,8 +21,11 @@ interface VirtualizedResultsListProps {
  * Uses dynamic item measurement so variable-height cards lay out correctly.
  */
 export function VirtualizedResultsList({ items }: VirtualizedResultsListProps) {
+  'use no memo';
+
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const virtualizer = useVirtualizer({
     count: items.length,
     getScrollElement: () => containerRef.current,
