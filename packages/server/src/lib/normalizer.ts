@@ -149,7 +149,7 @@ function normalizeInstance(raw: unknown): Instance {
     type: str(r["type"], "unknown"),
     urls: arr(r["urls"], (u) => str(u)),
     publicationDate: strOrNull(r["publicationDate"]),
-    refereed: strOrNull(r["refereed"]) as Instance["refereed"],
+    refereed: strOrNull(r["refereed"]) as NonNullable<Instance["refereed"]> | null,
     hostedBy: {
       key: str(obj(r["hostedBy"])["key"]),
       value: str(obj(r["hostedBy"])["value"]),
