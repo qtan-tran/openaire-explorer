@@ -154,12 +154,12 @@ function normalizeInstance(raw: unknown): Instance {
       key: str(obj(r["hostedBy"])["key"]),
       value: str(obj(r["hostedBy"])["value"]),
     },
-    ...(r["collectedFrom"] && {
+    ...(r["collectedFrom"] ? {
       collectedFrom: {
         key: str(obj(r["collectedFrom"])["key"]),
         value: str(obj(r["collectedFrom"])["value"]),
       },
-    }),
+    } : {}),
   };
 }
 

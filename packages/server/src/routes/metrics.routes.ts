@@ -234,12 +234,12 @@ metricsRouter.get("/network", async (req, res, next) => {
 
     const products = await fetchProducts(
       {
-        search: q.search,
-        relOrganizationId: q.organizationId,
-        relProjectId: q.projectId,
-        funder: q.funderShortName,
-        fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
-        toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+        ...(q.search && { search: q.search }),
+        ...(q.organizationId && { relOrganizationId: q.organizationId }),
+        ...(q.projectId && { relProjectId: q.projectId }),
+        ...(q.funderShortName && { funder: q.funderShortName }),
+        ...(q.fromYear && { fromPublicationDate: `${q.fromYear}-01-01` }),
+        ...(q.toYear && { toPublicationDate: `${q.toYear}-12-31` }),
       },
       500 // cap at 500 products for graph building
     );
@@ -265,12 +265,12 @@ metricsRouter.get("/oa-distribution/stream", async (req, res, next) => {
   try {
     await streamProducts(res, {
       params: {
-        search: q.search,
-        relOrganizationId: q.organizationId,
-        relProjectId: q.projectId,
-        funder: q.funderShortName,
-        fromPublicationDate: q.fromYear ? `${q.fromYear}-01-01` : undefined,
-        toPublicationDate: q.toYear ? `${q.toYear}-12-31` : undefined,
+        ...(q.search && { search: q.search }),
+        ...(q.organizationId && { relOrganizationId: q.organizationId }),
+        ...(q.projectId && { relProjectId: q.projectId }),
+        ...(q.funderShortName && { funder: q.funderShortName }),
+        ...(q.fromYear && { fromPublicationDate: `${q.fromYear}-01-01` }),
+        ...(q.toYear && { toPublicationDate: `${q.toYear}-12-31` }),
       },
       maxResults: 2000,
     });
