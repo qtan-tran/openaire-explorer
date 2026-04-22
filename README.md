@@ -29,15 +29,41 @@
 
 ## 🚀 Quick Start
 
+### 1) Install dependencies
+
 ```bash
 git clone https://github.com/your-org/openaire-explorer.git
 cd openaire-explorer
 npm install
+```
+
+### 2) Create the server env file
+
+Use the command that matches your shell:
+
+```bash
+# macOS / Linux / Git Bash
 cp packages/server/.env.example packages/server/.env
+```
+
+```powershell
+# PowerShell (Windows)
+Copy-Item packages/server/.env.example packages/server/.env
+```
+
+### 3) Start the app
+
+```bash
 npm run dev
 ```
 
-The client will be available at **http://localhost:5173** and the API at **http://localhost:3001**.
+The client will be available at **http://localhost:5173**.
+
+The backend listens on **http://localhost:3001**, and the health endpoint is:
+
+- **http://localhost:3001/api/health**
+
+`http://localhost:3001/` returning `{"error":"Not found","code":"NOT_FOUND"}` is expected because routes are under `/api/*`.
 
 ### Prerequisites
 
