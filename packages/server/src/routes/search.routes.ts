@@ -16,6 +16,18 @@ export const searchRouter = Router();
 
 // ─── Envelope helpers ─────────────────────────────────────────────────────────
 
+/**
+ * OpenAIRE currently rejects EMBARGOEDACCESS as a value for
+ * `bestOpenAccessRightLabel` with HTTP 400.
+ * We map it to RESTRICTED to keep the filter usable.
+ */
+function normalizeOaStatusForUpstream(
+  status: SearchResearchProductsQuery["oaStatus"] | undefined
+) {
+  if (status === "EMBARGOEDACCESS") return "RESTRICTED";
+  return status;
+}
+
 function paginated<T>(
   response: PaginatedResponse<T>,
   page: number,
@@ -48,13 +60,16 @@ searchRouter.get(
     try {
       const q = req.query as unknown as SearchResearchProductsQuery;
       const client = getOpenAIREClient();
+      const normalizedOaStatus = normalizeOaStatusForUpstream(q.oaStatus);
 
       const result = await client.searchResearchProducts({
         ...(q.search !== undefined && { search: q.search }),
         ...(q.type !== undefined && { type: q.type }),
         ...(q.fromYear && { fromPublicationDate: `${q.fromYear}-01-01` }),
         ...(q.toYear && { toPublicationDate: `${q.toYear}-12-31` }),
-        ...(q.oaStatus !== undefined && { bestOpenAccessRightLabel: q.oaStatus }),
+        ...(normalizedOaStatus !== undefined && {
+          bestOpenAccessRightLabel: normalizedOaStatus,
+        }),
         ...(q.openAccessColor !== undefined && { openAccessColor: q.openAccessColor }),
         ...(q.organizationId !== undefined && { relOrganizationId: q.organizationId }),
         ...(q.projectId !== undefined && { relProjectId: q.projectId }),

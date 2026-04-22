@@ -169,6 +169,22 @@ describe("GET /api/search/research-products", () => {
     );
   });
 
+  test("maps EMBARGOEDACCESS to RESTRICTED for upstream compatibility", async () => {
+    const mockClient = makeMockClient();
+    setOpenAIREClient(mockClient);
+
+    await request(app)
+      .get("/api/search/research-products")
+      .query({ oaStatus: "EMBARGOEDACCESS" })
+      .expect(200);
+
+    expect(mockClient.searchResearchProducts).toHaveBeenCalledWith(
+      expect.objectContaining({
+        bestOpenAccessRightLabel: "RESTRICTED",
+      })
+    );
+  });
+
   test("returns 400 for invalid type enum", async () => {
     const res = await request(app)
       .get("/api/search/research-products")
