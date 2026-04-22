@@ -9,9 +9,7 @@ import {
   Lightbulb,
   LineChart,
   Scale,
-  Settings,
   ShieldCheck,
-  Target,
   User,
 } from "lucide-react";
 
