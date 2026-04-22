@@ -514,7 +514,7 @@ export function AboutPage() {
             </p>
             <div className="citation-box">
               <div className="citation-ref">
-                Tran, Q.-T. (2026). <em>Beyond Metadata: Decoding Open Research</em> with OpenAIRE Explorer.
+                Tran, Q.-T. (2026). Beyond Metadata: Decoding Open Research with OpenAIRE Explorer.
               </div>
               <a
                 href="https://github.com/qtan-tran/openaire-explorer"
