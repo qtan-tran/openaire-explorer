@@ -71,6 +71,67 @@ The backend listens on **http://localhost:3001**, and the health endpoint is:
 - npm ≥ 10
 
 ---
+## 🚀 How to Deploy Your Project to the Web
+
+Since your project has a **Client** (the website you see) and a **Server** (the "brain" that handles data), we have to put them in two different places.
+
+### 1. The Big Picture
+
+Think of this like moving into a new house. You can't just move your furniture (Client) without making sure the utilities like water and power (Server) are hooked up at the new address first.
+
+### Phase 1: Prepare your "Brain" (The Server)
+
+Before touching Vercel, your backend must be online. Vercel is great for websites, but it isn't designed to run permanent "always-on" servers.
+
+1. **Deploy your Server:** Use a service like [Render](https://render.com), [Railway](https://railway.app), or [Fly.io](https://fly.io).
+
+2. **Get your Public URL:** Once deployed, you will get a link that looks like `https://my-api-server.onrender.com`.
+
+3. **Test it:** Open that link in your browser. If you see a "Welcome" message or a health check, you are ready.
+
+> **⚠️ Important:** You must update your Server's **CORS** settings to allow your new Vercel website to talk to it. Usually, this means adding your Vercel URL to your server's `.env` file or configuration.
+
+### Phase 2: Deploy your Website (Vercel)
+
+Now that the server is live, let's put the interface online.
+
+1. **Login to Vercel:** Go to [vercel.com](https://vercel.com) and click **"Add New Project"**.
+
+2. **Connect GitHub:** Select your repository from the list.
+
+3. **Configure the Build:** This is the most important part!
+   
+   - **Root Directory:** Click "Edit" and select `packages/client`.
+   
+   - **Framework Preset:** Vercel should auto-detect **Vite**.
+
+4. **Environment Variables:** Look for a section called "Environment Variables." This tells the website where the server lives.
+   
+   - **Key:** `VITE_API_BASE_URL`
+   
+   - **Value:** Paste your server URL here (e.g., `https://my-api-server.onrender.com`).
+
+5. **Deploy:** Click the **Deploy** button.
+
+### Phase 3: Verify and Go Live
+
+Once the bars turn green and you see the confetti:
+
+1. **Open the URL:** Vercel will give you a link (like `https://project-name.vercel.app`).
+
+2. **The "Check-Up":** * Does the page load?
+   
+   - Try to log in or fetch data.
+   
+   - **If it fails:** Right-click the page, select **Inspect**, and go to the **Console** tab. If you see red text mentioning "CORS," your Server is blocking your new website.
+
+### 🛠️ Common Beginner Troubleshooting
+
+- **"My site is blank":** Check that your **Output Directory** in Vercel settings is set to `dist`.
+
+- **"The API doesn't work":** Ensure your environment variable in Vercel starts with `VITE_`. Vite (the tool building your site) ignores variables that don't start with that prefix for security reasons.
+
+---
 
 ## 🏗️ Architecture
 
