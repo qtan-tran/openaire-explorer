@@ -12,6 +12,24 @@
 
 ---
 
+## 🌱 Origins & Authorship
+
+This repository was created and is maintained by **Quoc-Tan Tran**, Open Science Researcher at the Faculty of Sociology, Bielefeld University, with the technical assistance of Claude AI.
+
+It started as a practical way to turn OpenAIRE Graph data into an interactive research interface that supports transparent exploration, evidence-informed comparison, and reusable analytics for open science work.
+
+---
+
+## 🎯 Vision
+
+OpenAIRE Explorer aims to make open scholarly metadata easier to interpret and use in real research practice. The project focuses on:
+
+- lowering barriers to evidence discovery across publications, organisations, and projects
+- supporting comparative analysis for policy, institutional, and thematic questions
+- encouraging reproducible, inspectable workflows for open science intelligence
+
+---
+
 ## ✨ Features
 
 | | Feature |
@@ -64,6 +82,22 @@ The backend listens on **http://localhost:3001**, and the health endpoint is:
 - **http://localhost:3001/api/health**
 
 `http://localhost:3001/` returning `{"error":"Not found","code":"NOT_FOUND"}` is expected because routes are under `/api/*`.
+
+### 4) Example workflows in the client interface
+
+#### Compare tab example
+
+1. Open `http://localhost:5173/search` and search for a topic (for example: `open science`).
+2. Add 2-5 items to comparison from the result cards.
+3. Go to the **Compare** tab.
+4. Review side-by-side metrics and visual differences in OA status, publication year patterns, and metadata completeness.
+
+#### Analytics tab example
+
+1. Open the **Analytics** tab.
+2. Add widgets such as OA distribution, trends, and top nodes.
+3. Apply global filters (year range, entity scope) to focus on one topic or period.
+4. Use the combined dashboard to inspect changes in OA composition and publication dynamics over time.
 
 ### Prerequisites
 

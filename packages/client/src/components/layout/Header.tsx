@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Github, Search, BarChart2, GitCompareArrows } from "lucide-react";
+import { Github, Search, BarChart2, GitCompareArrows, Info } from "lucide-react";
 import clsx from "clsx";
 import { ThemeToggle } from "../ui/ThemeToggle";
 import { Container } from "./Container";
@@ -14,6 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/search",   label: "Search",   icon: <Search     className="h-4 w-4" aria-hidden /> },
   { to: "/compare",  label: "Compare",  icon: <GitCompareArrows className="h-4 w-4" aria-hidden /> },
   { to: "/analytics",label: "Analytics",icon: <BarChart2  className="h-4 w-4" aria-hidden /> },
+  { to: "/about",    label: "About",    icon: <Info       className="h-4 w-4" aria-hidden /> },
 ];
 
 export function Header() {
@@ -65,7 +66,7 @@ export function Header() {
           {/* Right controls */}
           <div className="flex items-center gap-1">
             <a
-              href="https://github.com"
+              href="https://github.com/qtan-tran/openaire-explorer"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View source on GitHub (opens in new tab)"

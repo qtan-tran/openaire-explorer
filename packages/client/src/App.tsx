@@ -32,6 +32,9 @@ const ComparePage = lazy(() =>
 const AnalyticsPage = lazy(() =>
   import("./pages/AnalyticsPage").then((m) => ({ default: m.AnalyticsPage }))
 );
+const AboutPage = lazy(() =>
+  import("./pages/AboutPage").then((m) => ({ default: m.AboutPage }))
+);
 
 // ─── Route loading fallback ───────────────────────────────────────────────────
 
@@ -72,6 +75,9 @@ export default function App() {
 
               {/* Analytics */}
               <Route path="/analytics" element={<AnalyticsPage />} />
+
+              {/* About */}
+              <Route path="/about" element={<AboutPage />} />
 
               {/* Fallback */}
               <Route path="*" element={<Navigate to="/" replace />} />
