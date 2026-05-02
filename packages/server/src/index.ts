@@ -34,7 +34,7 @@ app.use(
     origin:
       config.NODE_ENV === "production"
         ? ["https://openaire-explorer.example.com"]
-        : ["http://localhost:5173", "http://localhost:3000"],
+        : /^http:\/\/localhost(:\d+)?$/,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
@@ -92,9 +92,18 @@ app.use(errorHandler);
 // ─── Start ────────────────────────────────────────────────────────────────────
 
 if (process.env["VITEST"] === undefined) {
-  app.listen(config.PORT, () => {
+  const server = app.listen(config.PORT, () => {
     logger.info(`Server listening on http://localhost:${config.PORT}`);
-    // Optional cache warm-up (set WARM_CACHE=true to enable)
     warmCache().catch((err) => logger.warn({ err }, "Cache warm-up failed"));
+  });
+
+  server.on("error", (err: NodeJS.ErrnoException) => {
+    if (err.code === "EADDRINUSE") {
+      logger.error(
+        `Port ${config.PORT} is already in use. Stop the existing process and retry.`
+      );
+      process.exit(1);
+    }
+    throw err;
   });
 }
