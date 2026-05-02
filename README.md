@@ -35,12 +35,12 @@ OpenAIRE Explorer aims to make open scholarly metadata easier to interpret and u
 | | Feature |
 |---|---|
 | 🔍 | **Advanced search** with faceted filtering by type, date range, OA status, and funder |
-| ⚖️ | **Multi-entity comparison engine** — compare up to 5 publications, organisations, or projects side-by-side |
-| 📊 | **OA distribution analytics** — gold / green / bronze / hybrid / closed breakdown by year |
+| ⚖️ | **Multi-entity comparison engine** – compare up to 5 publications, organisations, or projects side-by-side |
+| 📊 | **OA distribution analytics** – gold / green / bronze / hybrid / closed breakdown by year |
 | 📈 | **Trend analysis** with year-over-year growth rates and publication velocity |
-| 🕸️ | **Research network visualisation** — interactive co-authorship and collaboration graphs via Cytoscape.js |
+| 🕸️ | **Research network visualisation** – interactive co-authorship and collaboration graphs via Cytoscape.js |
 | 🌓 | **Dark / light mode** with system preference detection |
-| ♿ | **ARIA-compliant accessibility** — keyboard navigable, screen-reader friendly |
+| ♿ | **ARIA-compliant accessibility** – keyboard navigable, screen-reader friendly |
 | 📱 | **Mobile-first responsive design** built with Tailwind CSS |
 
 ---
