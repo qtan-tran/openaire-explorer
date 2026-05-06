@@ -14,7 +14,7 @@
 
 ## 🌱 Origins & Authorship
 
-This repository was created and is maintained by **Quoc-Tan Tran**, Open Science Researcher at the Faculty of Sociology, Bielefeld University, with the technical assistance of Claude AI.
+This repository was created and is maintained by **Quoc-Tan Tran**, Open Science Researcher at the Faculty of Sociology, Bielefeld University.
 
 It started as a practical way to turn OpenAIRE Graph data into an interactive research interface that supports transparent exploration, evidence-informed comparison, and reusable analytics for open science work.
 
@@ -55,7 +55,7 @@ cd openaire-explorer
 npm install
 ```
 
-### 2) Create the server env file
+### 2) Create the server .env file
 
 Use the command that matches your shell:
 
