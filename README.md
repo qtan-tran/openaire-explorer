@@ -163,7 +163,7 @@ Once the bars turn green and you see the confetti:
 
 - **"My site is blank":** Check that your **Output Directory** in Vercel settings is set to `dist`.
 
-- **"The API doesn't work":** Ensure your environment variable in Vercel starts with `VITE_`. Vite (the tool building your site) ignores variables that don't start with that prefix for security reasons.
+- **"The API doesn't work":** Ensure the environment variable in Vercel starts with `VITE_`. Vite (the tool building your site) ignores variables that don't start with that prefix for security reasons.
 
 ---
 
