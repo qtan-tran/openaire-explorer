@@ -75,7 +75,7 @@ Copy-Item packages/server/.env.example packages/server/.env
 npm run dev
 ```
 
-The client will be available at **http://localhost:5173**.
+The client should be available at **http://localhost:5173**.
 
 The backend listens on **http://localhost:3001**, and the health endpoint is:
 
