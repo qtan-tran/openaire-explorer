@@ -24,8 +24,8 @@ It started as a practical way to turn OpenAIRE Graph data into an interactive re
 
 OpenAIRE Explorer aims to make open scholarly metadata easier to interpret and use in real research practice. The project focuses on:
 
-- lowering barriers to evidence discovery across publications, organisations, and projects
-- supporting comparative analysis for policy, institutional, and thematic questions
+- lowering barriers to evidence discovery across publications, organisations, and projects;
+- supporting comparative analysis for policy, institutional, and thematic questions;
 - encouraging reproducible, inspectable workflows for open science intelligence
 
 ---
