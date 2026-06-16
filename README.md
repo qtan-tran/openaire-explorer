@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue.svg)](https://www.typescriptlang.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-<!-- Replace with actual screenshot -->
+<!-- Replace with actual screenshots -->
 <!-- ![OpenAIRE Explorer Dashboard Screenshot](docs/screenshot.png) -->
 
 ---
