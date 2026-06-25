@@ -115,7 +115,7 @@ Think of this like moving into a new house. You can't just move your furniture (
 
 ### Phase 1: Prepare your "Brain" (The Server)
 
-Before touching Vercel, your backend must be online. Vercel is great for websites, but it isn't designed to run permanent "always-on" servers.
+Before touching Vercel, your backend must be online. Vercel is great for the websites, but it isn't designed to run permanent "always-on" servers.
 
 1. **Deploy your Server:** Use a service like [Render](https://render.com), [Railway](https://railway.app), or [Fly.io](https://fly.io).
 
