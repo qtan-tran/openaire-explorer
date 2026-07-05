@@ -16,7 +16,7 @@
 
 This repository was created and is maintained by **Quoc-Tan Tran**, Open Science Researcher at the Faculty of Sociology, Bielefeld University.
 
-It started as a practical way to turn OpenAIRE Graph data into an interactive research interface that supports transparent exploration, evidence-informed comparison, and reusable analytics for open science work.
+It started as a practical way to turn OpenAIRE Graph data into an interactive interface that supports transparent exploration, evidence-informed comparison, and reusable analytics for open science work.
 
 ---
 
