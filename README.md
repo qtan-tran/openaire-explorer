@@ -95,7 +95,7 @@ The backend listens on **http://localhost:3001**, and the health endpoint is:
 #### Analytics tab example
 
 1. Open the **Analytics** tab.
-2. Add widgets such as OA distribution, trends, and top nodes.
+2. Add widgets such as OA distribution, trends and top nodes.
 3. Apply global filters (year range, entity scope) to focus on one topic or period.
 4. Use the combined dashboard to inspect changes in OA composition and publication dynamics over time.
 
