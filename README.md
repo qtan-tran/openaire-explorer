@@ -111,7 +111,7 @@ Since your project has a **Client** (the website you see) and a **Server** (the 
 
 ### 1. The Big Picture
 
-Think of this like moving into a new house. You can't just move your furniture (Client) without making sure the utilities like water and power (Server) are hooked up at the new address first.
+Think of this like moving into a new house. You can't just move your furniture (Client) without making sure that the utilities like water and power (Server) are hooked up at the new address first.
 
 ### Phase 1: Prepare your "Brain" (The Server)
 
