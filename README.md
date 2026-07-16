@@ -87,7 +87,7 @@ The backend listens on **http://localhost:3001**, and the health endpoint is:
 
 #### Compare tab example
 
-1. Open `http://localhost:5173/search` and search for a topic (for example: `open science`).
+1. Open `http://localhost:5173/search` and search for a topic (for example: `open access`).
 2. Add 2-5 items to comparison from the result cards.
 3. Go to the **Compare** tab.
 4. Review side-by-side metrics and visual differences in OA status, publication year patterns, and metadata completeness.
