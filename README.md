@@ -145,7 +145,7 @@ Now that the server is live, let's put the interface online.
    
    - **Value:** Paste your server URL here (e.g., `https://my-api-server.onrender.com`).
 
-5. **Deploy:** Click the **Deploy** button.
+5. **Deploy:** Click **Deploy** button.
 
 ### Phase 3: Verify and Go Live
 
