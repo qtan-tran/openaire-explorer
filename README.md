@@ -121,7 +121,7 @@ Before touching Vercel, your backend must be online. Vercel is great for the web
 
 2. **Get your Public URL:** Once deployed, you will get a link that looks like `https://my-api-server.onrender.com`.
 
-3. **Test it:** Open that link in your browser. If you see a "Welcome" message or a health check, you are ready.
+3. **Test it:** Open the link in your browser. If you see a "Welcome" message or a health check, you are ready.
 
 > **⚠️ Important:** You must update your Server's **CORS** settings to allow your new Vercel website to talk to it. Usually, this means adding your Vercel URL to your server's `.env` file or configuration.
 
