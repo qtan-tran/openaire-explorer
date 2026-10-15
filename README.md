@@ -127,7 +127,7 @@ Before touching Vercel, your backend must be online. Vercel is great for the web
 
 ### Phase 2: Deploy your Website (Vercel)
 
-Now that the server is live, let's put the interface online.
+Now that the server is live, let's put the interface online first.
 
 1. **Login to Vercel:** Go to [vercel.com](https://vercel.com) and click **"Add New Project"**.
 
